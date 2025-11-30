@@ -1,0 +1,9 @@
+[gd_resource type="Environment" format=3 uid="uid://tob8fx6ae8qj"]
+
+[resource]
+background_mode = 3
+background_canvas_max_layer = 1
+glow_enabled = true
+glow_bloom = 0.23
+glow_hdr_threshold = 0.9
+adjustment_enabled = true

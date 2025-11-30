@@ -1,0 +1,253 @@
+[gd_scene load_steps=4 format=3 uid="uid://2531f3m0wblh"]
+
+[ext_resource type="Script" uid="uid://u5tmd8jtonyd" path="res://scripts/start.gd" id="1_bodal"]
+[ext_resource type="PackedScene" uid="uid://bw7avhgp6kabt" path="res://scenes/crt.tscn" id="2_kdmts"]
+[ext_resource type="Theme" uid="uid://bojatv6dk6yvc" path="res://resources/text.tres" id="3_0auqf"]
+
+[node name="Start" type="CanvasLayer"]
+script = ExtResource("1_bodal")
+
+[node name="CRT" parent="." instance=ExtResource("2_kdmts")]
+
+[node name="Menu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -7.0
+offset_right = 160.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/CenterContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Menu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 32
+
+[node name="Title" type="RichTextLabel" parent="Menu/CenterContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("3_0auqf")
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/normal_font_size = 48
+text = "20 Seconds to Paradise"
+fit_content = true
+autowrap_mode = 0
+
+[node name="CenterContainer" type="CenterContainer" parent="Menu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/CenterContainer/VBoxContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="Start" type="Button" parent="Menu/CenterContainer/VBoxContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("3_0auqf")
+text = "Start"
+
+[node name="Manual" type="Button" parent="Menu/CenterContainer/VBoxContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_0auqf")
+text = "Manual"
+
+[node name="Credits" type="Button" parent="Menu/CenterContainer/VBoxContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_0auqf")
+text = "Credits
+"
+
+[node name="Manual" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="Manual"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Manual"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Manual/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="Manual" type="RichTextLabel" parent="Manual/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("3_0auqf")
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_constants/line_separation = 8
+theme_override_font_sizes/normal_font_size = 32
+text = "Greetings, Player!
+
+Welcome, and thank you for your participation! Our study seeks to understand human-robot interfaces, and our relation to code!
+
+This study takes appoxiamately 20 seconds to complete.
+
+You will be presented an environment with a little character, named CAXX.
+
+CAXX will respond to the commands you type in the terminal located at the bottom-right of the environment.
+
+The commands are:
+right/r: Move right
+left/l: Move left
+jump/up/j;u: Jump
+stop/wait/s/w: Stop moving until next command
+
+Additionally, you may add a number at the end of the command, and CAXX will perform that action for that many seconds (except for jumping and stoping).
+
+Your goal is to move CAXX to the gate in the level.
+
+Best of luck!"
+autowrap_mode = 2
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="Manual/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Manual/VBoxContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="Start" type="Button" parent="Manual/VBoxContainer/CenterContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_0auqf")
+text = "Start"
+
+[node name="Credits" type="Button" parent="Manual/VBoxContainer/CenterContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_0auqf")
+text = "Credits
+"
+
+[node name="TitleScreen" type="Button" parent="Manual/VBoxContainer/CenterContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_0auqf")
+text = "Titlescreen"
+
+[node name="Credits" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="Credits"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Credits"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Credits/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="Credits" type="RichTextLabel" parent="Credits/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("3_0auqf")
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_constants/line_separation = 8
+theme_override_font_sizes/normal_font_size = 32
+text = "Principal Researcher: Alejandro Ciuba
+Contact: alejandrociuba@pitt.edu
+
+Resources Used:
+Font: Dogicapixelbold by Roberto Mocci
+Shader: VHS and CRT monitor effect by pend00 on godotshaders.com"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="Credits/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Credits/VBoxContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="Start" type="Button" parent="Credits/VBoxContainer/CenterContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_0auqf")
+text = "Start"
+
+[node name="Manual" type="Button" parent="Credits/VBoxContainer/CenterContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_0auqf")
+text = "Manual"
+
+[node name="TitleScreen" type="Button" parent="Credits/VBoxContainer/CenterContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_0auqf")
+text = "Titlescreen"
+
+[connection signal="pressed" from="Menu/CenterContainer/VBoxContainer/CenterContainer/VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Menu/CenterContainer/VBoxContainer/CenterContainer/VBoxContainer/Manual" to="." method="_on_manual_pressed"]
+[connection signal="pressed" from="Menu/CenterContainer/VBoxContainer/CenterContainer/VBoxContainer/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="Manual/VBoxContainer/CenterContainer/HBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Manual/VBoxContainer/CenterContainer/HBoxContainer/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="Manual/VBoxContainer/CenterContainer/HBoxContainer/TitleScreen" to="." method="_on_title_screen_pressed"]
+[connection signal="pressed" from="Credits/VBoxContainer/CenterContainer/HBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Credits/VBoxContainer/CenterContainer/HBoxContainer/Manual" to="." method="_on_manual_pressed"]
+[connection signal="pressed" from="Credits/VBoxContainer/CenterContainer/HBoxContainer/TitleScreen" to="." method="_on_title_screen_pressed"]

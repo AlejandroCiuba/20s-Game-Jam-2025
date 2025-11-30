@@ -1,0 +1,72 @@
+[gd_scene load_steps=4 format=3 uid="uid://bev7hsl75khgx"]
+
+[ext_resource type="Script" uid="uid://dvftd8fgtgtvp" path="res://scripts/victory.gd" id="1_hl81x"]
+[ext_resource type="PackedScene" uid="uid://bw7avhgp6kabt" path="res://scenes/crt.tscn" id="1_le47n"]
+[ext_resource type="Theme" uid="uid://bojatv6dk6yvc" path="res://resources/text.tres" id="3_73dpb"]
+
+[node name="Victory" type="CanvasLayer"]
+script = ExtResource("1_hl81x")
+
+[node name="CRT" parent="." instance=ExtResource("1_le47n")]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="Manual" type="RichTextLabel" parent="Control/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("3_73dpb")
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_constants/line_separation = 8
+theme_override_font_sizes/normal_font_size = 32
+text = "Thank you for your participation!"
+autowrap_mode = 2
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="Play Again" type="Button" parent="Control/VBoxContainer/CenterContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_73dpb")
+text = "Start"
+
+[node name="TitleScreen" type="Button" parent="Control/VBoxContainer/CenterContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_73dpb")
+text = "Titlescreen"
+
+[connection signal="pressed" from="Control/VBoxContainer/CenterContainer/HBoxContainer/Play Again" to="." method="_on_play_again_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/CenterContainer/HBoxContainer/TitleScreen" to="." method="_on_title_screen_pressed"]

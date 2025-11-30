@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dq67ayuijuhpa"]
+
+[ext_resource type="Script" uid="uid://c3d454lhynuon" path="res://scripts/moving_platform.gd" id="1_1tdcd"]
+[ext_resource type="Texture2D" uid="uid://c2ke2bphnpxyj" path="res://textures/block.png" id="2_mb26n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hrpga"]
+size = Vector2(32, 32)
+
+[node name="Moving Platform" type="Node2D"]
+script = ExtResource("1_1tdcd")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+gravity_scale = 0.0
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+texture = ExtResource("2_mb26n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("RectangleShape2D_hrpga")

@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://4ve5iu1e5sjb"]
+
+[ext_resource type="FontFile" uid="uid://qmdehtmvfcj3" path="res://textures/font/dogicapixel.ttf" id="1_x4jx1"]
+[ext_resource type="Script" uid="uid://bkgxtuj2oowah" path="res://scripts/timer.gd" id="1_yev5y"]
+[ext_resource type="Theme" uid="uid://bojatv6dk6yvc" path="res://resources/text.tres" id="2_bi5oq"]
+[ext_resource type="FontFile" uid="uid://bvk10ulo04hxw" path="res://textures/font/dogicapixelbold.ttf" id="2_yev5y"]
+
+[node name="Timer" type="Control"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+script = ExtResource("1_yev5y")
+
+[node name="Margins" type="MarginContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -1.0
+offset_bottom = 336.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 105
+
+[node name="TimerDisplay" type="RichTextLabel" parent="Margins"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_bi5oq")
+theme_override_fonts/normal_font = ExtResource("1_x4jx1")
+theme_override_fonts/bold_font = ExtResource("2_yev5y")
+theme_override_font_sizes/normal_font_size = 64
+theme_override_font_sizes/bold_font_size = 64
+bbcode_enabled = true
+text = "[b]20.00[/b]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 2

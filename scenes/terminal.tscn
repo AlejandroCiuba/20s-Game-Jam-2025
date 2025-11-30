@@ -1,0 +1,67 @@
+[gd_scene load_steps=3 format=3 uid="uid://e574vbvtfqti"]
+
+[ext_resource type="Theme" uid="uid://bojatv6dk6yvc" path="res://resources/text.tres" id="1_m430i"]
+[ext_resource type="Script" uid="uid://t62uhlrthbun" path="res://scripts/terminal.gd" id="1_sy66w"]
+
+[node name="Terminal" type="Control"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -467.0
+offset_top = -143.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_sy66w")
+
+[node name="Panel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_m430i")
+
+[node name="Lines" type="VBoxContainer" parent="Panel"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="View" type="HBoxContainer" parent="Panel/Lines"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 2
+
+[node name="Header" type="MarginContainer" parent="Panel/Lines/View"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="HeaderText" type="LineEdit" parent="Panel/Lines/View/Header"]
+layout_mode = 2
+size_flags_vertical = 8
+theme = ExtResource("1_m430i")
+text = "Command:"
+editable = false
+expand_to_text_length = true
+
+[node name="Command" type="MarginContainer" parent="Panel/Lines/View"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/margin_bottom = 16
+
+[node name="CommandText" type="LineEdit" parent="Panel/Lines/View/Command"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_m430i")
+placeholder_text = "Type Command"
+expand_to_text_length = true
