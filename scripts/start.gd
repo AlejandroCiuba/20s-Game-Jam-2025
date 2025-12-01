@@ -15,8 +15,13 @@ func switch_menu(n: String):
 	curr.visible = true
 
 
+func _on_pressed():
+	$AudioStreamPlayer.play()
+
+
 func _on_start_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/level.tscn")
+	await $AudioStreamPlayer.finished
+	(func (): get_tree().change_scene_to_file("res://scenes/level.tscn")).call_deferred()  # Lambda function makes call happen last to allow for sound effect
 
 
 func _on_manual_pressed() -> void:
