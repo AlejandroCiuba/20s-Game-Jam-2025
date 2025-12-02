@@ -33,7 +33,7 @@ func _on_command(cmd: String, args: PackedStringArray):
 
 
 func _on_gate_player_entered() -> void:
-	get_tree().change_scene_to_file("res://scenes/victory.tscn")
+	Manager.victory()
 
 
 # TODO: Add a fail state

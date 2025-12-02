@@ -21,7 +21,7 @@ func _on_pressed():
 
 func _on_start_pressed() -> void:
 	await $AudioStreamPlayer.finished
-	(func (): get_tree().change_scene_to_file("res://scenes/level.tscn")).call_deferred()  # Lambda function makes call happen last to allow for sound effect
+	Manager.change_scene("res://scenes/screens/level.tscn")
 
 
 func _on_manual_pressed() -> void:

@@ -8,4 +8,5 @@ func _ready() -> void:
 
 
 func _on_area_2d_body_entered(_body: Node2D) -> void:
+	print_debug("EMIT")
 	(func(): player_entered.emit()).call_deferred()

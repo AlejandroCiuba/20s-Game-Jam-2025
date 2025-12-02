@@ -4,7 +4,7 @@ signal command(cmd: String, args: PackedStringArray)
 @onready var curr_view: HBoxContainer = %Lines.get_child(0)
 
 
-func _ready() -> void:
+func _on_unpaused():
 	curr_view.get_child(1).get_child(0).grab_focus()
 
 
@@ -24,6 +24,10 @@ func update():
 	if len(%Lines.get_children()) > 3:
 		%Lines.get_child(0).free()
 
+	curr_view.get_child(1).get_child(0).grab_focus()
+
+
+func _ready() -> void:
 	curr_view.get_child(1).get_child(0).grab_focus()
 
 
