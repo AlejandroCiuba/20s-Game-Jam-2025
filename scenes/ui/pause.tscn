@@ -1,0 +1,98 @@
+[gd_scene load_steps=6 format=3 uid="uid://srkywjwu34ii"]
+
+[ext_resource type="Script" uid="uid://oewre0m1kvxm" path="res://scripts/pause.gd" id="1_k23cl"]
+[ext_resource type="Theme" uid="uid://bojatv6dk6yvc" path="res://resources/text.tres" id="1_xld5c"]
+[ext_resource type="AudioStream" uid="uid://cvpqeqj4rh0ig" path="res://sound/paradise-game.wav" id="3_qgos8"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_1rcxi"]
+content_margin_left = 32.0
+content_margin_top = 32.0
+content_margin_right = 32.0
+content_margin_bottom = 32.0
+thickness = 16
+vertical = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xld5c"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(1, 1, 1, 1)
+
+[node name="Pause" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_k23cl")
+
+[node name="Pause" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Pause Button" type="Button" parent="Pause"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -224.0
+offset_bottom = 92.0
+grow_horizontal = 0
+theme = ExtResource("1_xld5c")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_styles/hover = SubResource("StyleBoxLine_1rcxi")
+text = "Pause"
+
+[node name="Resume" type="Control" parent="."]
+process_mode = 2
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Resume"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_xld5c")
+theme_override_styles/panel = SubResource("StyleBoxFlat_xld5c")
+
+[node name="Resume Button" type="Button" parent="Resume/PanelContainer"]
+layout_mode = 2
+theme = ExtResource("1_xld5c")
+text = "Resume"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_qgos8")
+
+[connection signal="pressed" from="Pause/Pause Button" to="." method="_on_pause_button_pressed"]
+[connection signal="pressed" from="Pause/Pause Button" to="." method="_on_pressed"]
+[connection signal="pressed" from="Resume/PanelContainer/Resume Button" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Resume/PanelContainer/Resume Button" to="." method="_on_pressed"]

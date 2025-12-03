@@ -1,14 +1,14 @@
 [gd_scene load_steps=5 format=3 uid="uid://2531f3m0wblh"]
 
-[ext_resource type="Script" uid="uid://u5tmd8jtonyd" path="res://scripts/start.gd" id="1_bodal"]
-[ext_resource type="PackedScene" uid="uid://bw7avhgp6kabt" path="res://scenes/crt.tscn" id="2_kdmts"]
-[ext_resource type="Theme" uid="uid://bojatv6dk6yvc" path="res://resources/text.tres" id="3_0auqf"]
-[ext_resource type="AudioStream" uid="uid://cvpqeqj4rh0ig" path="res://sound/paradise-game.wav" id="4_kdmts"]
+[ext_resource type="Script" uid="uid://u5tmd8jtonyd" path="res://scripts/start.gd" id="1_jmev2"]
+[ext_resource type="PackedScene" uid="uid://bw7avhgp6kabt" path="res://scenes/ui/crt.tscn" id="2_swjlb"]
+[ext_resource type="Theme" uid="uid://bojatv6dk6yvc" path="res://resources/text.tres" id="3_u7tek"]
+[ext_resource type="AudioStream" uid="uid://cvpqeqj4rh0ig" path="res://sound/paradise-game.wav" id="4_p6pjl"]
 
 [node name="Start" type="CanvasLayer"]
-script = ExtResource("1_bodal")
+script = ExtResource("1_jmev2")
 
-[node name="CRT" parent="." instance=ExtResource("2_kdmts")]
+[node name="CRT" parent="." instance=ExtResource("2_swjlb")]
 
 [node name="Menu" type="Control" parent="."]
 layout_mode = 3
@@ -50,7 +50,7 @@ theme_override_constants/margin_bottom = 32
 
 [node name="Title" type="RichTextLabel" parent="Menu/CenterContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
-theme = ExtResource("3_0auqf")
+theme = ExtResource("3_u7tek")
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/normal_font_size = 48
 text = "20 Seconds to Paradise"
@@ -63,19 +63,19 @@ layout_mode = 2
 [node name="Start" type="Button" parent="Menu/CenterContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
-theme = ExtResource("3_0auqf")
+theme = ExtResource("3_u7tek")
 text = "Start"
 alignment = 0
 
 [node name="Manual" type="Button" parent="Menu/CenterContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("3_0auqf")
+theme = ExtResource("3_u7tek")
 text = "Manual"
 alignment = 0
 
 [node name="Credits" type="Button" parent="Menu/CenterContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("3_0auqf")
+theme = ExtResource("3_u7tek")
 text = "Credits
 "
 alignment = 0
@@ -118,7 +118,7 @@ theme_override_constants/margin_bottom = 32
 
 [node name="Manual" type="RichTextLabel" parent="Manual/VBoxContainer/MarginContainer"]
 layout_mode = 2
-theme = ExtResource("3_0auqf")
+theme = ExtResource("3_u7tek")
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_constants/line_separation = 8
 theme_override_font_sizes/normal_font_size = 32
@@ -154,20 +154,20 @@ layout_mode = 2
 
 [node name="Start" type="Button" parent="Manual/VBoxContainer/CenterContainer/HBoxContainer"]
 layout_mode = 2
-theme = ExtResource("3_0auqf")
+theme = ExtResource("3_u7tek")
 text = "Start"
 alignment = 0
 
 [node name="Credits" type="Button" parent="Manual/VBoxContainer/CenterContainer/HBoxContainer"]
 layout_mode = 2
-theme = ExtResource("3_0auqf")
+theme = ExtResource("3_u7tek")
 text = "Credits
 "
 alignment = 0
 
 [node name="TitleScreen" type="Button" parent="Manual/VBoxContainer/CenterContainer/HBoxContainer"]
 layout_mode = 2
-theme = ExtResource("3_0auqf")
+theme = ExtResource("3_u7tek")
 text = "Titlescreen"
 alignment = 0
 
@@ -209,7 +209,7 @@ theme_override_constants/margin_bottom = 32
 
 [node name="Credits" type="RichTextLabel" parent="Credits/VBoxContainer/MarginContainer"]
 layout_mode = 2
-theme = ExtResource("3_0auqf")
+theme = ExtResource("3_u7tek")
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_constants/line_separation = 8
 theme_override_font_sizes/normal_font_size = 32
@@ -233,40 +233,40 @@ size_flags_horizontal = 0
 
 [node name="Start" type="Button" parent="Credits/VBoxContainer/CenterContainer/HBoxContainer"]
 layout_mode = 2
-theme = ExtResource("3_0auqf")
+theme = ExtResource("3_u7tek")
 text = "Start"
 alignment = 0
 
 [node name="Manual" type="Button" parent="Credits/VBoxContainer/CenterContainer/HBoxContainer"]
 layout_mode = 2
-theme = ExtResource("3_0auqf")
+theme = ExtResource("3_u7tek")
 text = "Manual"
 alignment = 0
 
 [node name="TitleScreen" type="Button" parent="Credits/VBoxContainer/CenterContainer/HBoxContainer"]
 layout_mode = 2
-theme = ExtResource("3_0auqf")
+theme = ExtResource("3_u7tek")
 text = "Titlescreen"
 alignment = 0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_kdmts")
+stream = ExtResource("4_p6pjl")
 
-[connection signal="pressed" from="Menu/CenterContainer/VBoxContainer/VBoxContainer/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Menu/CenterContainer/VBoxContainer/VBoxContainer/Start" to="." method="_on_pressed"]
-[connection signal="pressed" from="Menu/CenterContainer/VBoxContainer/VBoxContainer/Manual" to="." method="_on_manual_pressed"]
+[connection signal="pressed" from="Menu/CenterContainer/VBoxContainer/VBoxContainer/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Menu/CenterContainer/VBoxContainer/VBoxContainer/Manual" to="." method="_on_pressed"]
-[connection signal="pressed" from="Menu/CenterContainer/VBoxContainer/VBoxContainer/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="Menu/CenterContainer/VBoxContainer/VBoxContainer/Manual" to="." method="_on_manual_pressed"]
 [connection signal="pressed" from="Menu/CenterContainer/VBoxContainer/VBoxContainer/Credits" to="." method="_on_pressed"]
-[connection signal="pressed" from="Manual/VBoxContainer/CenterContainer/HBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Menu/CenterContainer/VBoxContainer/VBoxContainer/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="Manual/VBoxContainer/CenterContainer/HBoxContainer/Start" to="." method="_on_pressed"]
-[connection signal="pressed" from="Manual/VBoxContainer/CenterContainer/HBoxContainer/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="Manual/VBoxContainer/CenterContainer/HBoxContainer/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Manual/VBoxContainer/CenterContainer/HBoxContainer/Credits" to="." method="_on_pressed"]
-[connection signal="pressed" from="Manual/VBoxContainer/CenterContainer/HBoxContainer/TitleScreen" to="." method="_on_title_screen_pressed"]
+[connection signal="pressed" from="Manual/VBoxContainer/CenterContainer/HBoxContainer/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="Manual/VBoxContainer/CenterContainer/HBoxContainer/TitleScreen" to="." method="_on_pressed"]
-[connection signal="pressed" from="Credits/VBoxContainer/CenterContainer/HBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Manual/VBoxContainer/CenterContainer/HBoxContainer/TitleScreen" to="." method="_on_title_screen_pressed"]
 [connection signal="pressed" from="Credits/VBoxContainer/CenterContainer/HBoxContainer/Start" to="." method="_on_pressed"]
-[connection signal="pressed" from="Credits/VBoxContainer/CenterContainer/HBoxContainer/Manual" to="." method="_on_manual_pressed"]
+[connection signal="pressed" from="Credits/VBoxContainer/CenterContainer/HBoxContainer/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Credits/VBoxContainer/CenterContainer/HBoxContainer/Manual" to="." method="_on_pressed"]
-[connection signal="pressed" from="Credits/VBoxContainer/CenterContainer/HBoxContainer/TitleScreen" to="." method="_on_title_screen_pressed"]
+[connection signal="pressed" from="Credits/VBoxContainer/CenterContainer/HBoxContainer/Manual" to="." method="_on_manual_pressed"]
 [connection signal="pressed" from="Credits/VBoxContainer/CenterContainer/HBoxContainer/TitleScreen" to="." method="_on_pressed"]
+[connection signal="pressed" from="Credits/VBoxContainer/CenterContainer/HBoxContainer/TitleScreen" to="." method="_on_title_screen_pressed"]

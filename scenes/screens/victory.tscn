@@ -1,14 +1,15 @@
 [gd_scene load_steps=5 format=3 uid="uid://bev7hsl75khgx"]
 
-[ext_resource type="Script" uid="uid://dvftd8fgtgtvp" path="res://scripts/victory.gd" id="1_hl81x"]
-[ext_resource type="PackedScene" uid="uid://bw7avhgp6kabt" path="res://scenes/crt.tscn" id="1_le47n"]
-[ext_resource type="Theme" uid="uid://bojatv6dk6yvc" path="res://resources/text.tres" id="3_73dpb"]
-[ext_resource type="AudioStream" uid="uid://cvpqeqj4rh0ig" path="res://sound/paradise-game.wav" id="4_73dpb"]
+[ext_resource type="Script" uid="uid://dvftd8fgtgtvp" path="res://scripts/victory.gd" id="1_m2tkd"]
+[ext_resource type="PackedScene" uid="uid://bw7avhgp6kabt" path="res://scenes/ui/crt.tscn" id="2_48wmm"]
+[ext_resource type="Theme" uid="uid://bojatv6dk6yvc" path="res://resources/text.tres" id="3_eqqsn"]
+[ext_resource type="AudioStream" uid="uid://cvpqeqj4rh0ig" path="res://sound/paradise-game.wav" id="4_clstc"]
 
 [node name="Victory" type="CanvasLayer"]
-script = ExtResource("1_hl81x")
+script = ExtResource("1_m2tkd")
 
-[node name="CRT" parent="." instance=ExtResource("1_le47n")]
+[node name="CRT" parent="." instance=ExtResource("2_48wmm")]
+layer = 2
 
 [node name="Menu" type="Control" parent="."]
 layout_mode = 3
@@ -45,7 +46,7 @@ theme_override_constants/margin_bottom = 32
 
 [node name="Manual" type="RichTextLabel" parent="Menu/VBoxContainer/MarginContainer"]
 layout_mode = 2
-theme = ExtResource("3_73dpb")
+theme = ExtResource("3_eqqsn")
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_constants/line_separation = 8
 theme_override_font_sizes/normal_font_size = 32
@@ -61,18 +62,18 @@ layout_mode = 2
 
 [node name="Play Again" type="Button" parent="Menu/VBoxContainer/CenterContainer/HBoxContainer"]
 layout_mode = 2
-theme = ExtResource("3_73dpb")
+theme = ExtResource("3_eqqsn")
 text = "Start"
 
 [node name="TitleScreen" type="Button" parent="Menu/VBoxContainer/CenterContainer/HBoxContainer"]
 layout_mode = 2
-theme = ExtResource("3_73dpb")
+theme = ExtResource("3_eqqsn")
 text = "Titlescreen"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_73dpb")
+stream = ExtResource("4_clstc")
 
 [connection signal="pressed" from="Menu/VBoxContainer/CenterContainer/HBoxContainer/Play Again" to="." method="_on_play_again_pressed"]
 [connection signal="pressed" from="Menu/VBoxContainer/CenterContainer/HBoxContainer/Play Again" to="." method="_on_pressed"]
-[connection signal="pressed" from="Menu/VBoxContainer/CenterContainer/HBoxContainer/TitleScreen" to="." method="_on_title_screen_pressed"]
 [connection signal="pressed" from="Menu/VBoxContainer/CenterContainer/HBoxContainer/TitleScreen" to="." method="_on_pressed"]
+[connection signal="pressed" from="Menu/VBoxContainer/CenterContainer/HBoxContainer/TitleScreen" to="." method="_on_title_screen_pressed"]
