@@ -9,7 +9,6 @@
 script = ExtResource("1_m2tkd")
 
 [node name="CRT" parent="." instance=ExtResource("2_48wmm")]
-layer = 2
 
 [node name="Menu" type="Control" parent="."]
 layout_mode = 3
@@ -44,7 +43,8 @@ theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
-[node name="Manual" type="RichTextLabel" parent="Menu/VBoxContainer/MarginContainer"]
+[node name="ThankYou" type="RichTextLabel" parent="Menu/VBoxContainer/MarginContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("3_eqqsn")
 theme_override_colors/default_color = Color(1, 1, 1, 1)
@@ -63,7 +63,7 @@ layout_mode = 2
 [node name="Play Again" type="Button" parent="Menu/VBoxContainer/CenterContainer/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_eqqsn")
-text = "Start"
+text = "Play Again"
 
 [node name="TitleScreen" type="Button" parent="Menu/VBoxContainer/CenterContainer/HBoxContainer"]
 layout_mode = 2
@@ -73,7 +73,7 @@ text = "Titlescreen"
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_clstc")
 
-[connection signal="pressed" from="Menu/VBoxContainer/CenterContainer/HBoxContainer/Play Again" to="." method="_on_play_again_pressed"]
 [connection signal="pressed" from="Menu/VBoxContainer/CenterContainer/HBoxContainer/Play Again" to="." method="_on_pressed"]
-[connection signal="pressed" from="Menu/VBoxContainer/CenterContainer/HBoxContainer/TitleScreen" to="." method="_on_pressed"]
+[connection signal="pressed" from="Menu/VBoxContainer/CenterContainer/HBoxContainer/Play Again" to="." method="_on_play_again_pressed"]
 [connection signal="pressed" from="Menu/VBoxContainer/CenterContainer/HBoxContainer/TitleScreen" to="." method="_on_title_screen_pressed"]
+[connection signal="pressed" from="Menu/VBoxContainer/CenterContainer/HBoxContainer/TitleScreen" to="." method="_on_pressed"]

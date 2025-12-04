@@ -1,7 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://dx4hrv5p7ak0j"]
+[gd_scene load_steps=13 format=3 uid="uid://dx4hrv5p7ak0j"]
 
 [ext_resource type="Script" uid="uid://c3u0gf44870nj" path="res://scripts/player.gd" id="1_4flbx"]
-[ext_resource type="Texture2D" uid="uid://m16xjqh6m2vr" path="res://textures/little-guy.png" id="2_g2els"]
+[ext_resource type="Texture2D" uid="uid://8madjy5a7hho" path="res://textures/little-guy-updated.png" id="2_a5w8i"]
 
 [sub_resource type="Animation" id="Animation_dqkch"]
 length = 0.001
@@ -68,7 +68,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_fjrip"]
 resource_name = "land"
-length = 0.4
+length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -98,18 +98,48 @@ tracks/0/keys = {
 "values": [Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2)]
 }
 
-[sub_resource type="Animation" id="Animation_g2els"]
-resource_name = "player_anims"
+[sub_resource type="Animation" id="Animation_a5w8i"]
+resource_name = "fail"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2i(0, 5), Vector2i(1, 5)]
+}
+
+[sub_resource type="Animation" id="Animation_3mlo1"]
+resource_name = "fail_end"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(2, 5)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dqkch"]
 _data = {
 &"RESET": SubResource("Animation_dqkch"),
 &"blink": SubResource("Animation_smehm"),
+&"fail": SubResource("Animation_a5w8i"),
+&"fail_end": SubResource("Animation_3mlo1"),
 &"idle": SubResource("Animation_tuyoq"),
 &"jump": SubResource("Animation_qlg0r"),
 &"land": SubResource("Animation_fjrip"),
-&"move": SubResource("Animation_qhqgy"),
-&"player_anims": SubResource("Animation_g2els")
+&"move": SubResource("Animation_qhqgy")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
@@ -126,9 +156,9 @@ collision_mask = 5
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
 texture_filter = 1
 position = Vector2(3.57628e-07, 2.44379e-06)
-texture = ExtResource("2_g2els")
+texture = ExtResource("2_a5w8i")
 hframes = 4
-vframes = 5
+vframes = 6
 frame = 8
 
 [node name="PlayerAnim" type="AnimationPlayer" parent="CharacterBody2D/Sprite2D"]

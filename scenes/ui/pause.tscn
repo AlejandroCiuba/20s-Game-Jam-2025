@@ -57,7 +57,6 @@ text = "Pause"
 
 [node name="Resume" type="Control" parent="."]
 process_mode = 2
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -84,15 +83,24 @@ grow_vertical = 2
 theme = ExtResource("1_xld5c")
 theme_override_styles/panel = SubResource("StyleBoxFlat_xld5c")
 
-[node name="Resume Button" type="Button" parent="Resume/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Resume/PanelContainer"]
+layout_mode = 2
+
+[node name="Resume Button" type="Button" parent="Resume/PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_xld5c")
 text = "Resume"
 
+[node name="Restart Button" type="Button" parent="Resume/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_xld5c")
+text = "Restart"
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_qgos8")
 
-[connection signal="pressed" from="Pause/Pause Button" to="." method="_on_pause_button_pressed"]
 [connection signal="pressed" from="Pause/Pause Button" to="." method="_on_pressed"]
-[connection signal="pressed" from="Resume/PanelContainer/Resume Button" to="." method="_on_resume_button_pressed"]
-[connection signal="pressed" from="Resume/PanelContainer/Resume Button" to="." method="_on_pressed"]
+[connection signal="pressed" from="Pause/Pause Button" to="." method="_on_pause_button_pressed"]
+[connection signal="pressed" from="Resume/PanelContainer/VBoxContainer/Resume Button" to="." method="_on_pressed"]
+[connection signal="pressed" from="Resume/PanelContainer/VBoxContainer/Resume Button" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Resume/PanelContainer/VBoxContainer/Restart Button" to="." method="_on_restart_button_pressed"]

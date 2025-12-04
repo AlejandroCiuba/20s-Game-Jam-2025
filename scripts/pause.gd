@@ -25,3 +25,9 @@ func _on_resume_button_pressed() -> void:
 func _ready() -> void:
 	$Pause.visible = true
 	$Resume.visible = false
+
+
+func _on_restart_button_pressed() -> void:
+	get_tree().paused = false
+	Manager.change_scene("res://scenes/screens/level.tscn")
+	unpaused.emit()
