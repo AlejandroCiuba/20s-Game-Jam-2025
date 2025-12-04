@@ -10,6 +10,10 @@ var idle: bool = true
 @onready var dir: Vector2 = Vector2.ZERO
 
 
+func _on_bulk_command(cmds: Array[String], args: Array[PackedStringArray]):
+	pass
+
+
 func _on_command(cmd: String, args: PackedStringArray):
 	match cmd:
 		"left", "l":
