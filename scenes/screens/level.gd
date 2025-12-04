@@ -4,6 +4,7 @@ signal loss
 
 
 func _on_gate_player_entered() -> void:
+	Manager.final_time = $Canvases/UILayer/UI.curr_time as float
 	Manager.victory()
 
 

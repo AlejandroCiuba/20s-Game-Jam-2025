@@ -6,7 +6,9 @@ extends Node2D
 @export var charbod: CharacterBody2D
 
 var failed: bool = false
-var cmd_queue: Array = []
+
+var cmd_queue: Array = []  # Command processing queue
+signal processing
 
 var idle: bool = true  # Just for the idle animation
 var falling: bool = false  # Just for the falling animation
@@ -49,10 +51,14 @@ func process_command(cmd: String, args: PackedStringArray):
 
 
 func _on_command(cmds: Array):
+
 	cmd_queue = cmds  # New commands overwrite previous ones
 	print_debug("COMMAND QUEUE:", cmd_queue)
+
 	while not cmd_queue.is_empty():
 		var next = cmd_queue.pop_front()
+		if next == null:  # Fixes race condition where multiple calls pass their while check
+			return
 		print_debug("Next:", next)
 		await process_command(next[0], next[1])
 

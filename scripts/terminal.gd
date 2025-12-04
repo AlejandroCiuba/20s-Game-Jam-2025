@@ -38,13 +38,13 @@ func _process(_delta: float) -> void:
 		Manager.total_lines += 1
 
 		var cmd_queue: Array = []
-		var cmd: String = curr_view.get_child(1).get_child(0).text.strip_escapes().strip_edges().to_lower()
+		var cmd: String = curr_view.get_child(1).get_child(0).text.strip_escapes().replace(" ", "").to_lower()
 		print_debug(cmd)
 
 		if not cmd.is_empty():
 			for subcmd in cmd.split(";"):
 				if not subcmd.strip_edges().is_empty():
-					var parse: PackedStringArray = subcmd.strip_edges().split(" ")
+					var parse: PackedStringArray = subcmd.strip_edges().split("")  # TODO: Fix parsing error for decimal numbers
 					print_debug(parse)
 					if len(parse) > 1:
 						cmd_queue.append([parse[0], parse.slice(1)])
