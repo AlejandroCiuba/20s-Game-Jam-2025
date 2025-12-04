@@ -1,6 +1,6 @@
 extends Control
 
-signal command(cmd: String, args: PackedStringArray)
+signal command_queue(cmds: Array)
 @onready var curr_view: HBoxContainer = %Lines.get_child(0)
 
 
@@ -35,6 +35,9 @@ func _process(_delta: float) -> void:
 
 	if Input.is_action_just_pressed("command"):
 
+		Manager.total_lines += 1
+
+		var cmd_queue: Array = []
 		var cmd: String = curr_view.get_child(1).get_child(0).text.strip_escapes().strip_edges().to_lower()
 		print_debug(cmd)
 
@@ -44,8 +47,9 @@ func _process(_delta: float) -> void:
 					var parse: PackedStringArray = subcmd.strip_edges().split(" ")
 					print_debug(parse)
 					if len(parse) > 1:
-						command.emit(parse[0], parse.slice(1))
+						cmd_queue.append([parse[0], parse.slice(1)])
 					else:
-						command.emit(parse[0], PackedStringArray())
+						cmd_queue.append([parse[0], PackedStringArray()])
+			command_queue.emit(cmd_queue)
 
 			update()

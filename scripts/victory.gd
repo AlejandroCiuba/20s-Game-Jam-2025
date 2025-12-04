@@ -13,3 +13,7 @@ func _on_play_again_pressed() -> void:
 func _on_title_screen_pressed() -> void:
 	await $AudioStreamPlayer.finished
 	Manager.change_scene("res://scenes/screens/start.tscn") # Replace with function body.
+
+
+func _ready():
+	%ThankYou.text += "\n\nTotal Lines: %d" % (Manager.total_lines)

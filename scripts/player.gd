@@ -5,82 +5,117 @@ extends Node2D
 @export var gravity: float = 7000
 @export var charbod: CharacterBody2D
 
-var idle: bool = true
+var failed: bool = false
+var cmd_queue: Array = []
+
+var idle: bool = true  # Just for the idle animation
+var falling: bool = false  # Just for the falling animation
+var prev_anim: String = "wait"
 
 @onready var dir: Vector2 = Vector2.ZERO
 
+func move(direction: Vector2, time: float = 0.0):
+	if direction != Vector2.UP:
+		dir = direction
+	if not is_equal_approx(time, 0.0):
+		await get_tree().create_timer(time).timeout
+		if direction != Vector2.UP:  # Jump will continue unless it waits
+			dir = Vector2.ZERO
+	if direction == Vector2.UP:
+		charbod.velocity.y = -jump
 
-func _on_command(cmd: String, args: PackedStringArray):
+
+func process_command(cmd: String, args: PackedStringArray):
 	match cmd:
 		"left", "l":
-			dir = Vector2.LEFT
-			if not args.is_empty():
-				await get_tree().create_timer(args[0] as float).timeout
-				dir = Vector2.ZERO
+			anim_handler("left")
+			await move(Vector2.LEFT, 0.0 if args.is_empty() else (args[0] as float))
+			if not args.is_empty():  # Wait if there was a time limit to the movement
+				anim_handler("wait")
+			prev_anim = %PlayerAnim.current_animation
 		"right", "r":
-			dir = Vector2.RIGHT
+			anim_handler("right")
+			await move(Vector2.RIGHT, 0.0 if args.is_empty() else (args[0] as float))
 			if not args.is_empty():
-				await get_tree().create_timer(args[0] as float).timeout
-				dir = Vector2.ZERO
+				anim_handler("wait")
+			prev_anim = %PlayerAnim.current_animation
 		"jump", "up", "j", "u":
-			if not args.is_empty():
-				await get_tree().create_timer(args[0] as float).timeout
-			if charbod.is_on_floor():
-				charbod.velocity.y = -jump
+			await move(Vector2.UP, 0.0 if args.is_empty() else (args[0] as float))
+			anim_handler("jump")
 		"stop", "wait", "s", "w":
-			dir = Vector2.ZERO
-	anim_handler()
+			anim_handler("wait")
+			await move(Vector2.ZERO, 0.0 if args.is_empty() else (args[0] as float))
+			prev_anim = %PlayerAnim.current_animation
 
 
-func _on_gate_player_entered() -> void:
-	Manager.victory()
+func _on_command(cmds: Array):
+	cmd_queue = cmds  # New commands overwrite previous ones
+	print_debug("COMMAND QUEUE:", cmd_queue)
+	while not cmd_queue.is_empty():
+		var next = cmd_queue.pop_front()
+		print_debug("Next:", next)
+		await process_command(next[0], next[1])
 
 
-# TODO: Add a fail state
-func _on_timeout():
-	pass
+func _on_loss():
+	failed = true
+	set_physics_process(false)
+	anim_handler("loss")
 
 
 func _on_player_anim_timer_timeout() -> void:
-	if idle:
-		if randf() > 0.5:
-			%PlayerAnim.play("idle")
-		else:
-			%PlayerAnim.play("blink")
+	if idle and not failed:
+		anim_handler("wait")
+
+
+func anim_handler(animation: String) -> void:
+
+	# Checks for idling since we are randomly looping through idle animations
+	if animation not in ["wait", "idle", "blink"]:
+		idle = false
+	else:
+		idle = true
+
+	match animation:
+		"left":
+			$CharacterBody2D/Sprite2D.flip_h = true
+			%PlayerAnim.play("move")
+		"right":
+			$CharacterBody2D/Sprite2D.flip_h = false
+			%PlayerAnim.play("move")
+		"jump":
+			%PlayerAnim.play("jump")
+		"wait":
+			if randf() > 0.5:
+				%PlayerAnim.play("idle")
+			else:
+				%PlayerAnim.play("blink")
+		"land":
+			%PlayerAnim.play("land")
+		"loss":
+			%PlayerAnim.play("fail")
+			await %PlayerAnim.animation_finished
+			%PlayerAnim.play("fail_end")
+		var true_name:
+			%PlayerAnim.play(true_name)
+
+	#print_debug("Current Animation: ", %PlayerAnim.current_animation)
 
 
 func _ready() -> void:
 	%PlayerAnimTimer.start(randf() + 0.5)
 
 
-func anim_handler() -> void:
-
-	if is_zero_approx(dir.x) and charbod.is_on_floor():
-		idle = true
-	elif not is_zero_approx(dir.x) and charbod.is_on_floor():
-		idle = false
-		if dir.x > 0:
-			$CharacterBody2D/Sprite2D.flip_h = false
-			%PlayerAnim.play("move")
-		else:
-			$CharacterBody2D/Sprite2D.flip_h = true
-			%PlayerAnim.play("move")
-
-	if charbod.velocity.y < 0 and not is_zero_approx(charbod.velocity.y):
-		%PlayerAnim.play("jump")
-
-	print_debug("Current Animation: ", %PlayerAnim.current_animation)
-
+# Handles the player falling and then resuming the previous animation after the fall
+func _process(_delta: float) -> void:
+	if not charbod.is_on_floor() and charbod.velocity.y > 0 and not falling:
+		falling = true
+		anim_handler("land")
+	elif charbod.is_on_floor() and falling:
+		falling = false
+		anim_handler(prev_anim)
 
 func _physics_process(delta: float) -> void:
-
 	charbod.velocity.x = speed * dir.x * delta
 	charbod.velocity.y += gravity * delta
 	charbod.move_and_slide()
-
-	if charbod.velocity.y > 0 and not is_zero_approx(charbod.velocity.y):
-		idle = false
-		%PlayerAnim.play("land")
-
-	if %PlayerAnim.current_animation == "land":
-		anim_handler()
