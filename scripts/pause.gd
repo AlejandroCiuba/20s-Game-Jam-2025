@@ -22,12 +22,17 @@ func _on_resume_button_pressed() -> void:
 	unpaused.emit()
 
 
-func _ready() -> void:
-	$Pause.visible = true
+func _on_restart_button_pressed() -> void:
+	await $AudioStreamPlayer.finished
+	get_tree().paused = false
+	Manager.change_scene("res://scenes/screens/level.tscn")
+
+
+func _on_loss() -> void:
+	$Pause.visible = false
 	$Resume.visible = false
 
 
-func _on_restart_button_pressed() -> void:
-	get_tree().paused = false
-	Manager.change_scene("res://scenes/screens/level.tscn")
-	unpaused.emit()
+func _ready() -> void:
+	$Pause.visible = true
+	$Resume.visible = false

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://fc4p3ciif5pp" path="res://scripts/gate.gd" id="1_15vrf"]
 [ext_resource type="Texture2D" uid="uid://c125pc3dnpdh7" path="res://textures/gate.png" id="2_xwxio"]
-[ext_resource type="AudioStream" uid="uid://csgsmqmfiax23" path="res://sound/gate.wav" id="3_hudsw"]
+[ext_resource type="AudioStream" uid="uid://dc3kbuly31al3" path="res://sound/gate.wav" id="3_hudsw"]
 
 [sub_resource type="Animation" id="Animation_hudsw"]
 length = 0.001

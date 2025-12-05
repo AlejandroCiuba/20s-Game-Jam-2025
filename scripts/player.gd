@@ -23,31 +23,32 @@ func move(direction: Vector2, time: float = 0.0):
 		await get_tree().create_timer(time).timeout
 		if direction != Vector2.UP:  # Jump will continue unless it waits
 			dir = Vector2.ZERO
-	if direction == Vector2.UP:
+	if direction == Vector2.UP and charbod.is_on_floor():
 		charbod.velocity.y = -jump
 
 
-func process_command(cmd: String, args: PackedStringArray):
+func process_command(cmd: String, args: String):
 	match cmd:
 		"left", "l":
 			anim_handler("left")
-			await move(Vector2.LEFT, 0.0 if args.is_empty() else (args[0] as float))
+			await move(Vector2.LEFT, 0.0 if args == "" else (args as float))
 			if not args.is_empty():  # Wait if there was a time limit to the movement
 				anim_handler("wait")
 			prev_anim = %PlayerAnim.current_animation
 		"right", "r":
 			anim_handler("right")
-			await move(Vector2.RIGHT, 0.0 if args.is_empty() else (args[0] as float))
+			await move(Vector2.RIGHT, 0.0 if args == "" else (args as float))
 			if not args.is_empty():
 				anim_handler("wait")
 			prev_anim = %PlayerAnim.current_animation
 		"jump", "up", "j", "u":
-			await move(Vector2.UP, 0.0 if args.is_empty() else (args[0] as float))
+			await move(Vector2.UP, 0.0 if args == "" else (args as float))
 			anim_handler("jump")
 		"stop", "wait", "s", "w":
 			anim_handler("wait")
-			await move(Vector2.ZERO, 0.0 if args.is_empty() else (args[0] as float))
+			await move(Vector2.ZERO, 0.0 if args == "" else (args as float))
 			prev_anim = %PlayerAnim.current_animation
+			$AudioStreamPlayer.play()  # We only want the sound to play here, not during any idle animation
 
 
 func _on_command(cmds: Array):

@@ -2,6 +2,7 @@ extends Control
 
 signal command_queue(cmds: Array)
 @onready var curr_view: HBoxContainer = %Lines.get_child(0)
+@onready var regex: RegEx = RegEx.new()
 
 
 func _on_unpaused():
@@ -27,29 +28,39 @@ func update():
 	curr_view.get_child(1).get_child(0).grab_focus()
 
 
+func _on_loss():
+	set_process(false)
+	curr_view.get_child(1).get_child(0).editable = false
+	curr_view.get_child(1).get_child(0).release_focus()
+
+
+func parse_input(raw: String, delim: String = ";") -> Array[PackedStringArray]:
+	var parse: PackedStringArray = raw.split(delim)
+	var queue: Array[PackedStringArray] = []
+	for sec in parse:
+		var cmd: Array[RegExMatch] = regex.search_all(sec.strip_edges())
+		for tokens in cmd:
+			if tokens != null:
+				print_debug(tokens.get_string("cmd"), tokens.get_string("args"))
+				queue.append(PackedStringArray([tokens.get_string("cmd"), tokens.get_string("args")]))
+			else:
+				return queue
+	return queue
+
+
 func _ready() -> void:
 	curr_view.get_child(1).get_child(0).grab_focus()
+	regex.compile(r"^\s*(?<cmd>(?:l(?:eft)*)|(?:r(?:ight)*)|(?:j(?:ump)*)|(?:w(?:ait)*))\s*(?<args>(?:\d*\.)?\d*)?\s*$")  # Thank you regex101.com
+	print_debug(regex.get_pattern())
 
 
 func _process(_delta: float) -> void:
 
 	if Input.is_action_just_pressed("command"):
-
 		Manager.total_lines += 1
-
-		var cmd_queue: Array = []
-		var cmd: String = curr_view.get_child(1).get_child(0).text.strip_escapes().replace(" ", "").to_lower()
-		print_debug(cmd)
-
-		if not cmd.is_empty():
-			for subcmd in cmd.split(";"):
-				if not subcmd.strip_edges().is_empty():
-					var parse: PackedStringArray = subcmd.strip_edges().split("")  # TODO: Fix parsing error for decimal numbers
-					print_debug(parse)
-					if len(parse) > 1:
-						cmd_queue.append([parse[0], parse.slice(1)])
-					else:
-						cmd_queue.append([parse[0], PackedStringArray()])
+		var raw: String = curr_view.get_child(1).get_child(0).text
+		if raw.strip_edges() != "":
+			var cmd_queue: Array[PackedStringArray] = parse_input(raw)
+			print_debug(cmd_queue)
 			command_queue.emit(cmd_queue)
-
 			update()

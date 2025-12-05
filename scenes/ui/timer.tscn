@@ -13,20 +13,15 @@ anchor_right = 1.0
 grow_horizontal = 0
 script = ExtResource("1_yev5y")
 
-[node name="Margins" type="MarginContainer" parent="."]
+[node name="TimerDisplay" type="RichTextLabel" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -1.0
-offset_bottom = 336.0
+offset_left = -288.0
+offset_bottom = 56.0
 grow_horizontal = 0
-theme_override_constants/margin_top = 105
-
-[node name="TimerDisplay" type="RichTextLabel" parent="Margins"]
-unique_name_in_owner = true
-layout_mode = 2
 theme = ExtResource("2_bi5oq")
 theme_override_fonts/normal_font = ExtResource("1_x4jx1")
 theme_override_fonts/bold_font = ExtResource("2_yev5y")

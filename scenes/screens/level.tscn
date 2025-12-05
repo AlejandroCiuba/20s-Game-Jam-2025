@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://djifxgsggo3ki"]
+[gd_scene load_steps=11 format=4 uid="uid://djifxgsggo3ki"]
 
 [ext_resource type="Script" uid="uid://cys7314fa4krl" path="res://scenes/screens/level.gd" id="1_qd03e"]
 [ext_resource type="PackedScene" uid="uid://ckulu081sdywv" path="res://scenes/ents/gate.tscn" id="1_xxk2u"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bw7avhgp6kabt" path="res://scenes/ui/crt.tscn" id="4_wn6df"]
 [ext_resource type="PackedScene" uid="uid://4ve5iu1e5sjb" path="res://scenes/ui/timer.tscn" id="5_3jvom"]
 [ext_resource type="PackedScene" uid="uid://e574vbvtfqti" path="res://scenes/ui/terminal.tscn" id="6_3y3we"]
+[ext_resource type="PackedScene" uid="uid://btjwpb2xuxl3p" path="res://scenes/ui/fail.tscn" id="6_wn6df"]
 [ext_resource type="Environment" uid="uid://tob8fx6ae8qj" path="res://resources/crt.tres" id="7_pa36w"]
 [ext_resource type="PackedScene" uid="uid://srkywjwu34ii" path="res://scenes/ui/pause.tscn" id="8_gthyw"]
 
@@ -60,11 +61,13 @@ follow_viewport_enabled = true
 
 [node name="Pause" parent="Canvases/UILayer" instance=ExtResource("8_gthyw")]
 
-[node name="UI" parent="Canvases/UILayer" instance=ExtResource("5_3jvom")]
+[node name="Fail" parent="Canvases/UILayer" instance=ExtResource("6_wn6df")]
+
+[node name="Timer" parent="Canvases/UILayer" instance=ExtResource("5_3jvom")]
 offset_left = -22.0
-offset_top = 64.0
+offset_top = 160.0
 offset_right = -22.0
-offset_bottom = 64.0
+offset_bottom = 160.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 left = 50.0
@@ -78,7 +81,10 @@ offset_top = -128.0
 environment = ExtResource("7_pa36w")
 
 [connection signal="loss" from="." to="Player" method="_on_loss"]
+[connection signal="loss" from="." to="Canvases/UILayer/Fail" method="_on_loss"]
+[connection signal="loss" from="." to="Canvases/UILayer/Pause" method="_on_loss"]
+[connection signal="loss" from="." to="Canvases/UILayer/Terminal" method="_on_loss"]
 [connection signal="player_entered" from="Gate" to="." method="_on_gate_player_entered"]
 [connection signal="unpaused" from="Canvases/UILayer/Pause" to="Canvases/UILayer/Terminal" method="_on_unpaused"]
-[connection signal="timeout" from="Canvases/UILayer/UI" to="." method="_on_ui_timeout"]
+[connection signal="timeout" from="Canvases/UILayer/Timer" to="." method="_on_ui_timeout"]
 [connection signal="command_queue" from="Canvases/UILayer/Terminal" to="Player" method="_on_command"]

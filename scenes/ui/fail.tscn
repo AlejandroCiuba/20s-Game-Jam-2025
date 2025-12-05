@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://btjwpb2xuxl3p"]
+
+[ext_resource type="Theme" uid="uid://bojatv6dk6yvc" path="res://resources/text.tres" id="1_2ypg5"]
+[ext_resource type="Script" uid="uid://cr1rfgf04j3d" path="res://scripts/fail.gd" id="1_x8iaa"]
+[ext_resource type="AudioStream" uid="uid://cvpqeqj4rh0ig" path="res://sound/paradise-game.wav" id="3_q2wf2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x8iaa"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(1, 1, 1, 1)
+
+[node name="Fail" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_x8iaa")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -146.0
+offset_top = -64.0
+offset_right = 146.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_2ypg5")
+theme_override_styles/panel = SubResource("StyleBoxFlat_x8iaa")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="Restart Button" type="Button" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_2ypg5")
+text = "Restart"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_q2wf2")
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Restart Button" to="." method="_on_restart_button_pressed"]
