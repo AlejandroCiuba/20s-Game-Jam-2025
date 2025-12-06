@@ -5,7 +5,7 @@ signal unpaused
 
 
 func _on_pressed():
-	$AudioStreamPlayer.play()
+	(func (): $AudioStreamPlayer.play()).call_deferred()  # Making this the last call means the entire audio will play since the resume button waits for the audio to finish
 
 
 func _on_pause_button_pressed() -> void:

@@ -1,0 +1,87 @@
+[gd_scene load_steps=4 format=3 uid="uid://v8bwswvrj446"]
+
+[ext_resource type="Script" uid="uid://d1brxant5au5i" path="res://scripts/dialog.gd" id="1_uvbxx"]
+[ext_resource type="Theme" uid="uid://bojatv6dk6yvc" path="res://resources/text.tres" id="1_xqt65"]
+[ext_resource type="StyleBox" uid="uid://bpmxb42q5c7fl" path="res://resources/non-button-panel.tres" id="2_uvbxx"]
+
+[node name="Dialog" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uvbxx")
+character = "CHAXX"
+text = "This is placeholder text."
+text_time = 0.05
+metadata/_edit_horizontal_guides_ = [334.0, 372.0]
+metadata/_edit_vertical_guides_ = [529.0, 623.0]
+
+[node name="TextContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -138.0
+offset_top = -48.0
+offset_right = 138.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = -8
+
+[node name="NameContainer" type="PanelContainer" parent="TextContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_xqt65")
+theme_override_styles/panel = ExtResource("2_uvbxx")
+
+[node name="MarginContainer" type="MarginContainer" parent="TextContainer/NameContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Name" type="RichTextLabel" parent="TextContainer/NameContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_xqt65")
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+text = "CHAXX"
+fit_content = true
+autowrap_mode = 0
+
+[node name="DialogContainer" type="PanelContainer" parent="TextContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_xqt65")
+theme_override_styles/panel = ExtResource("2_uvbxx")
+
+[node name="MarginContainer" type="MarginContainer" parent="TextContainer/DialogContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Dialog" type="RichTextLabel" parent="TextContainer/DialogContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme = ExtResource("1_xqt65")
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+text = "Test"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0

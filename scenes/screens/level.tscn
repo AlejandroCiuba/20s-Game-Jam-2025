@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://djifxgsggo3ki"]
+[gd_scene load_steps=12 format=4 uid="uid://djifxgsggo3ki"]
 
 [ext_resource type="Script" uid="uid://cys7314fa4krl" path="res://scenes/screens/level.gd" id="1_qd03e"]
 [ext_resource type="PackedScene" uid="uid://ckulu081sdywv" path="res://scenes/ents/gate.tscn" id="1_xxk2u"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://btjwpb2xuxl3p" path="res://scenes/ui/fail.tscn" id="6_wn6df"]
 [ext_resource type="Environment" uid="uid://tob8fx6ae8qj" path="res://resources/crt.tres" id="7_pa36w"]
 [ext_resource type="PackedScene" uid="uid://srkywjwu34ii" path="res://scenes/ui/pause.tscn" id="8_gthyw"]
+[ext_resource type="PackedScene" uid="uid://cp6jmgbdfr0iq" path="res://scenes/ui/sound.tscn" id="10_3jvom"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_qd03e")
@@ -77,12 +78,22 @@ metadata/_edit_use_anchors_ = true
 offset_left = -512.0
 offset_top = -128.0
 
+[node name="Sound" parent="Canvases/UILayer" instance=ExtResource("10_3jvom")]
+anchors_preset = 3
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -32.0
+offset_bottom = 0.0
+grow_vertical = 0
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 8
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Canvases"]
 environment = ExtResource("7_pa36w")
 
 [connection signal="loss" from="." to="Player" method="_on_loss"]
-[connection signal="loss" from="." to="Canvases/UILayer/Fail" method="_on_loss"]
 [connection signal="loss" from="." to="Canvases/UILayer/Pause" method="_on_loss"]
+[connection signal="loss" from="." to="Canvases/UILayer/Fail" method="_on_loss"]
 [connection signal="loss" from="." to="Canvases/UILayer/Terminal" method="_on_loss"]
 [connection signal="player_entered" from="Gate" to="." method="_on_gate_player_entered"]
 [connection signal="unpaused" from="Canvases/UILayer/Pause" to="Canvases/UILayer/Terminal" method="_on_unpaused"]

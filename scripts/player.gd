@@ -8,11 +8,12 @@ extends Node2D
 var failed: bool = false
 
 var cmd_queue: Array = []  # Command processing queue
-signal processing
 
 var idle: bool = true  # Just for the idle animation
 var falling: bool = false  # Just for the falling animation
 var prev_anim: String = "wait"
+
+var wait_sound = preload("res://sound/wait.wav")  # Needed because animation sound track overrides default
 
 @onready var dir: Vector2 = Vector2.ZERO
 
@@ -45,10 +46,11 @@ func process_command(cmd: String, args: String):
 			await move(Vector2.UP, 0.0 if args == "" else (args as float))
 			anim_handler("jump")
 		"stop", "wait", "s", "w":
+			$AudioStreamPlayer.stream = wait_sound# We only want the sound to play here, not during any idle animation
+			$AudioStreamPlayer.play()
 			anim_handler("wait")
 			await move(Vector2.ZERO, 0.0 if args == "" else (args as float))
 			prev_anim = %PlayerAnim.current_animation
-			$AudioStreamPlayer.play()  # We only want the sound to play here, not during any idle animation
 
 
 func _on_command(cmds: Array):

@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bev7hsl75khgx"]
+[gd_scene load_steps=6 format=3 uid="uid://bev7hsl75khgx"]
 
 [ext_resource type="Script" uid="uid://dvftd8fgtgtvp" path="res://scripts/victory.gd" id="1_m2tkd"]
 [ext_resource type="PackedScene" uid="uid://bw7avhgp6kabt" path="res://scenes/ui/crt.tscn" id="2_48wmm"]
+[ext_resource type="PackedScene" uid="uid://cp6jmgbdfr0iq" path="res://scenes/ui/sound.tscn" id="3_48wmm"]
 [ext_resource type="Theme" uid="uid://bojatv6dk6yvc" path="res://resources/text.tres" id="3_eqqsn"]
 [ext_resource type="AudioStream" uid="uid://cvpqeqj4rh0ig" path="res://sound/paradise-game.wav" id="4_clstc"]
 
@@ -27,17 +28,27 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
+[node name="Sound" parent="Menu" instance=ExtResource("3_48wmm")]
+layout_mode = 1
+offset_left = -48.0
+offset_bottom = 48.0
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+
 [node name="VBoxContainer" type="VBoxContainer" parent="Menu"]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 14
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 0.5
+offset_top = -94.0
+offset_bottom = 94.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="Menu/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_vertical = 10
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
@@ -51,22 +62,26 @@ theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_constants/line_separation = 8
 theme_override_font_sizes/normal_font_size = 32
 text = "Thank you for your participation!"
+fit_content = true
 autowrap_mode = 2
 vertical_alignment = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="Menu/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 6
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Menu/VBoxContainer/CenterContainer"]
 layout_mode = 2
 
 [node name="Play Again" type="Button" parent="Menu/VBoxContainer/CenterContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 8
 theme = ExtResource("3_eqqsn")
 text = "Play Again"
 
 [node name="TitleScreen" type="Button" parent="Menu/VBoxContainer/CenterContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 8
 theme = ExtResource("3_eqqsn")
 text = "Titlescreen"
 
@@ -75,5 +90,5 @@ stream = ExtResource("4_clstc")
 
 [connection signal="pressed" from="Menu/VBoxContainer/CenterContainer/HBoxContainer/Play Again" to="." method="_on_play_again_pressed"]
 [connection signal="pressed" from="Menu/VBoxContainer/CenterContainer/HBoxContainer/Play Again" to="." method="_on_pressed"]
-[connection signal="pressed" from="Menu/VBoxContainer/CenterContainer/HBoxContainer/TitleScreen" to="." method="_on_title_screen_pressed"]
 [connection signal="pressed" from="Menu/VBoxContainer/CenterContainer/HBoxContainer/TitleScreen" to="." method="_on_pressed"]
+[connection signal="pressed" from="Menu/VBoxContainer/CenterContainer/HBoxContainer/TitleScreen" to="." method="_on_title_screen_pressed"]

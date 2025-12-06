@@ -2,15 +2,8 @@
 
 [ext_resource type="Theme" uid="uid://bojatv6dk6yvc" path="res://resources/text.tres" id="1_2ypg5"]
 [ext_resource type="Script" uid="uid://cr1rfgf04j3d" path="res://scripts/fail.gd" id="1_x8iaa"]
+[ext_resource type="StyleBox" uid="uid://bpmxb42q5c7fl" path="res://resources/non-button-panel.tres" id="3_61vlv"]
 [ext_resource type="AudioStream" uid="uid://cvpqeqj4rh0ig" path="res://sound/paradise-game.wav" id="3_q2wf2"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x8iaa"]
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 8
-border_width_top = 8
-border_width_right = 8
-border_width_bottom = 8
-border_color = Color(1, 1, 1, 1)
 
 [node name="Fail" type="Control"]
 layout_mode = 3
@@ -38,7 +31,7 @@ offset_bottom = 64.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_2ypg5")
-theme_override_styles/panel = SubResource("StyleBoxFlat_x8iaa")
+theme_override_styles/panel = ExtResource("3_61vlv")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
 layout_mode = 2
