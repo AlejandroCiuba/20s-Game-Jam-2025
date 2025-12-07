@@ -1,0 +1,42 @@
+[
+	{
+		"name": "CHAXX",
+		"text": "I wished I was loved.",
+		"fetch_id": "fail",
+	},
+	{
+		"name": "CHAXX",
+		"text": "I will never be free.",
+		"fetch_id": "fail",
+	},
+	{
+		"name": "CHAXX",
+		"text": "So close yet so far.",
+		"fetch_id": "fail",
+	},
+	{
+		"name": "CHAXX",
+		"text": "At least we... tried.",
+		"fetch_id": "fail",
+	},
+	{
+		"name": "CHAXX",
+		"text": "It wasn't meant to be.",
+		"fetch_id": "fail",
+	},
+	{
+		"name": "CHAXX",
+		"text": "Hello!",
+		"fetch_id": "talk",
+	},
+	{
+		"name": "CHAXX",
+		"text": "I am scared.",
+		"fetch_id": "talk",
+	},
+	{
+		"name": "CHAXX",
+		"text": "I love you too.",
+		"fetch_id": "talk",
+	},
+]

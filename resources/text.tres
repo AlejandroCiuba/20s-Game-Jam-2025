@@ -66,6 +66,7 @@ LineEdit/styles/normal = SubResource("StyleBoxEmpty_41n7d")
 LineEdit/styles/read_only = SubResource("StyleBoxEmpty_w7ny3")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_1rcxi")
 RichTextLabel/colors/default_color = Color(0, 0, 0, 1)
+RichTextLabel/constants/line_separation = 8
 VScrollBar/styles/grabber = SubResource("StyleBoxFlat_w7ny3")
 VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_w7ny3")
 VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_w7ny3")

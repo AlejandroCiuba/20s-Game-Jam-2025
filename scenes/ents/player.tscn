@@ -102,7 +102,7 @@ tracks/0/keys = {
 tracks/1/type = "audio"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../../AudioStreamPlayer")
+tracks/1/path = NodePath("../AudioStreamPlayer")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -149,7 +149,7 @@ tracks/0/keys = {
 tracks/1/type = "audio"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../../AudioStreamPlayer")
+tracks/1/path = NodePath("../AudioStreamPlayer")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -177,15 +177,13 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
 size = Vector2(32, 32)
 
-[node name="Player" type="Node2D" node_paths=PackedStringArray("charbod")]
-script = ExtResource("1_4flbx")
-charbod = NodePath("CharacterBody2D")
-
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("charbod")]
 collision_layer = 2
 collision_mask = 5
+script = ExtResource("1_4flbx")
+charbod = NodePath("")
 
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(3.57628e-07, 2.44379e-06)
 texture = ExtResource("2_a5w8i")
@@ -193,19 +191,19 @@ hframes = 4
 vframes = 6
 frame = 8
 
-[node name="PlayerAnim" type="AnimationPlayer" parent="CharacterBody2D/Sprite2D"]
+[node name="PlayerAnim" type="AnimationPlayer" parent="Sprite2D"]
 unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_dqkch")
 }
 
-[node name="PlayerAnimTimer" type="Timer" parent="CharacterBody2D/Sprite2D"]
+[node name="PlayerAnimTimer" type="Timer" parent="Sprite2D"]
 unique_name_in_owner = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_onrkg")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
-[connection signal="timeout" from="CharacterBody2D/Sprite2D/PlayerAnimTimer" to="." method="_on_player_anim_timer_timeout"]
+[connection signal="timeout" from="Sprite2D/PlayerAnimTimer" to="." method="_on_player_anim_timer_timeout"]

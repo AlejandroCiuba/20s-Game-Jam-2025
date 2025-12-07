@@ -1,4 +1,4 @@
-extends Node2D
+extends CharacterBody2D
 
 @export var speed: float = 7000
 @export var jump: float = 1000
@@ -24,8 +24,8 @@ func move(direction: Vector2, time: float = 0.0):
 		await get_tree().create_timer(time).timeout
 		if direction != Vector2.UP:  # Jump will continue unless it waits
 			dir = Vector2.ZERO
-	if direction == Vector2.UP and charbod.is_on_floor():
-		charbod.velocity.y = -jump
+	if direction == Vector2.UP and is_on_floor():
+		velocity.y = -jump
 
 
 func process_command(cmd: String, args: String):
@@ -69,6 +69,7 @@ func _on_command(cmds: Array):
 func _on_loss():
 	failed = true
 	set_physics_process(false)
+	set_process(false)
 	anim_handler("loss")
 
 
@@ -87,10 +88,10 @@ func anim_handler(animation: String) -> void:
 
 	match animation:
 		"left":
-			$CharacterBody2D/Sprite2D.flip_h = true
+			$Sprite2D.flip_h = true
 			%PlayerAnim.play("move")
 		"right":
-			$CharacterBody2D/Sprite2D.flip_h = false
+			$Sprite2D.flip_h = false
 			%PlayerAnim.play("move")
 		"jump":
 			%PlayerAnim.play("jump")
@@ -117,14 +118,14 @@ func _ready() -> void:
 
 # Handles the player falling and then resuming the previous animation after the fall
 func _process(_delta: float) -> void:
-	if not charbod.is_on_floor() and charbod.velocity.y > 0 and not falling:
+	if not is_on_floor() and velocity.y > 0 and not falling:
 		falling = true
 		anim_handler("land")
-	elif charbod.is_on_floor() and falling:
+	elif is_on_floor() and falling:
 		falling = false
 		anim_handler(prev_anim)
 
 func _physics_process(delta: float) -> void:
-	charbod.velocity.x = speed * dir.x * delta
-	charbod.velocity.y += gravity * delta
-	charbod.move_and_slide()
+	velocity.x = speed * dir.x * delta
+	velocity.y += gravity * delta
+	move_and_slide()

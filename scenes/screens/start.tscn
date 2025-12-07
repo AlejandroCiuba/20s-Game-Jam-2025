@@ -122,27 +122,32 @@ layout_mode = 2
 theme = ExtResource("3_u7tek")
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_constants/line_separation = 8
+theme_override_constants/paragraph_separation = 8
 theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
 text = "Greetings, Player!
-
+[br]
 Welcome, and thank you for your participation! Our study seeks to understand human-robot interfaces, and our relation to code!
-
+[br]
 This study takes appoxiamately 20 seconds to complete.
-
+[br]
 You will be presented an environment with a little character, named CAXX.
-
+[br]
 CAXX will respond to the commands you type in the terminal located at the bottom-right of the environment.
-
+[br]
 The commands are:
-right/r: Move right
-left/l: Move left
-jump/up/j;u: Jump
-stop/wait/s/w: Stop moving until next command
-
-Additionally, you may add a number at the end of the command, and CAXX will perform that action for that many seconds (except for jumping and stoping).
-
+[br]
+r NUM: Move right for NUM seconds
+l NUM: Move left for NUM seconds
+j NUM: Jump after NUM seconds
+w NUM: Stop moving for NUM seconds
+[br]
+If you do not specify a NUM, l and r will make CAXX move in that direction until the next command, j will make CAXX jump instantly, and w will make CAXX wait indefinitely until the next command.
+[br]
+Lastly, you may put multiple commands on the same line by seperating them with a semicolon (;). CAXX will follow them from left-to-right order.
+[br]
 Your goal is to move CAXX to the gate in the level.
-
+[br]
 Best of luck!"
 autowrap_mode = 2
 vertical_alignment = 1
@@ -213,6 +218,7 @@ layout_mode = 2
 theme = ExtResource("3_u7tek")
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_constants/line_separation = 8
+theme_override_constants/paragraph_separation = 8
 theme_override_font_sizes/normal_font_size = 32
 text = "Principal Researcher: Alejandro Ciuba
 Contact: alejandrociuba@gmail.com

@@ -4,16 +4,12 @@ var curr_time: float = 20.0
 
 signal timeout
 
-@export_group("Margins")
-@export var left: float = 0.0
-@export var top: float = 0.0
-@export var right: float = 0.0
-@export var bottom: float = 0.0
+@export var time: float = 20.0
 
 
 func _ready() -> void:
 	%TimerDisplay.text = "[b]%.3f[/b]" % 0.0
-	start_timer(20.0, true, true)
+	start_timer(time, true, true)
 
 func start_timer(seconds: float, countdown: bool = true, display_ms: bool = true):
 
