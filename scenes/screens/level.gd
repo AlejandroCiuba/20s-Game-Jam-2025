@@ -20,7 +20,8 @@ func _on_loss() -> void:
 
 func _on_gate_player_entered() -> void:
 	Manager.final_time = $Canvases/UILayer/Timer.curr_time as float
-	Manager.victory()
+	Manager.total_lines = $Canvases/UILayer/Terminal/Panel/Lines.get_child_count() - 1
+	(func (): Manager.victory()).call_deferred()
 
 
 func _on_ui_timeout() -> void:

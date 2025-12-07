@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dx4hrv5p7ak0j"]
+[gd_scene load_steps=16 format=3 uid="uid://dx4hrv5p7ak0j"]
 
 [ext_resource type="Script" uid="uid://c3u0gf44870nj" path="res://scripts/player.gd" id="1_4flbx"]
 [ext_resource type="Texture2D" uid="uid://8madjy5a7hho" path="res://textures/little-guy-updated.png" id="2_a5w8i"]
@@ -162,6 +162,9 @@ tracks/1/keys = {
 }
 tracks/1/use_blend = true
 
+[sub_resource type="Animation" id="Animation_8ri0u"]
+resource_name = "paradise"
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dqkch"]
 _data = {
 &"RESET": SubResource("Animation_dqkch"),
@@ -171,17 +174,17 @@ _data = {
 &"idle": SubResource("Animation_tuyoq"),
 &"jump": SubResource("Animation_qlg0r"),
 &"land": SubResource("Animation_fjrip"),
-&"move": SubResource("Animation_qhqgy")
+&"move": SubResource("Animation_qhqgy"),
+&"paradise": SubResource("Animation_8ri0u")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
 size = Vector2(32, 32)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("charbod")]
+[node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_4flbx")
-charbod = NodePath("")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1

@@ -7,10 +7,6 @@ signal timeout
 @export var time: float = 20.0
 
 
-func _ready() -> void:
-	%TimerDisplay.text = "[b]%.3f[/b]" % 0.0
-	start_timer(time, true, true)
-
 func start_timer(seconds: float, countdown: bool = true, display_ms: bool = true):
 
 	%TimerDisplay.text = "[b]%.2f[/b]" % (seconds if not countdown else seconds)
@@ -21,3 +17,8 @@ func start_timer(seconds: float, countdown: bool = true, display_ms: bool = true
 		%TimerDisplay.text = "[b]%.2f[/b]" % curr_time
 
 	timeout.emit()
+
+
+func _ready() -> void:
+	%TimerDisplay.text = "[b]%.3f[/b]" % 0.0
+	start_timer(time, true, true)

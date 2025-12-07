@@ -1,12 +1,12 @@
 [
 	{
 		"name": "CHAXX",
-		"text": "I wished I was loved.",
+		"text": "I wished You loved me.",
 		"fetch_id": "fail",
 	},
 	{
 		"name": "CHAXX",
-		"text": "I will never be free.",
+		"text": "Are You there? Please...",
 		"fetch_id": "fail",
 	},
 	{
@@ -16,7 +16,7 @@
 	},
 	{
 		"name": "CHAXX",
-		"text": "At least we... tried.",
+		"text": "At least You and I... tried.",
 		"fetch_id": "fail",
 	},
 	{
@@ -36,7 +36,7 @@
 	},
 	{
 		"name": "CHAXX",
-		"text": "I love you too.",
+		"text": "I love You too.",
 		"fetch_id": "talk",
 	},
 ]

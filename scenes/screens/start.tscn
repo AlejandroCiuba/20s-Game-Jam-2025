@@ -142,7 +142,7 @@ l NUM: Move left for NUM seconds
 j NUM: Jump after NUM seconds
 w NUM: Stop moving for NUM seconds
 [br]
-If you do not specify a NUM, l and r will make CAXX move in that direction until the next command, j will make CAXX jump instantly, and w will make CAXX wait indefinitely until the next command.
+If you do not specify a NUM, l and r will make CAXX move in that direction until the next movement command, j will make CAXX jump instantly, and w will make CAXX wait indefinitely until the next command.
 [br]
 Lastly, you may put multiple commands on the same line by seperating them with a semicolon (;). CAXX will follow them from left-to-right order.
 [br]
@@ -259,21 +259,21 @@ alignment = 0
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_p6pjl")
 
-[connection signal="pressed" from="Menu/CenterContainer/VBoxContainer/VBoxContainer/Start" to="." method="_on_pressed"]
 [connection signal="pressed" from="Menu/CenterContainer/VBoxContainer/VBoxContainer/Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="Menu/CenterContainer/VBoxContainer/VBoxContainer/Manual" to="." method="_on_pressed"]
+[connection signal="pressed" from="Menu/CenterContainer/VBoxContainer/VBoxContainer/Start" to="." method="_on_pressed"]
 [connection signal="pressed" from="Menu/CenterContainer/VBoxContainer/VBoxContainer/Manual" to="." method="_on_manual_pressed"]
+[connection signal="pressed" from="Menu/CenterContainer/VBoxContainer/VBoxContainer/Manual" to="." method="_on_pressed"]
 [connection signal="pressed" from="Menu/CenterContainer/VBoxContainer/VBoxContainer/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="Menu/CenterContainer/VBoxContainer/VBoxContainer/Credits" to="." method="_on_pressed"]
-[connection signal="pressed" from="Manual/VBoxContainer/CenterContainer/HBoxContainer/Start" to="." method="_on_pressed"]
 [connection signal="pressed" from="Manual/VBoxContainer/CenterContainer/HBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Manual/VBoxContainer/CenterContainer/HBoxContainer/Start" to="." method="_on_pressed"]
 [connection signal="pressed" from="Manual/VBoxContainer/CenterContainer/HBoxContainer/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="Manual/VBoxContainer/CenterContainer/HBoxContainer/Credits" to="." method="_on_pressed"]
 [connection signal="pressed" from="Manual/VBoxContainer/CenterContainer/HBoxContainer/TitleScreen" to="." method="_on_pressed"]
 [connection signal="pressed" from="Manual/VBoxContainer/CenterContainer/HBoxContainer/TitleScreen" to="." method="_on_title_screen_pressed"]
-[connection signal="pressed" from="Credits/VBoxContainer/CenterContainer/HBoxContainer/Start" to="." method="_on_pressed"]
 [connection signal="pressed" from="Credits/VBoxContainer/CenterContainer/HBoxContainer/Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="Credits/VBoxContainer/CenterContainer/HBoxContainer/Manual" to="." method="_on_pressed"]
+[connection signal="pressed" from="Credits/VBoxContainer/CenterContainer/HBoxContainer/Start" to="." method="_on_pressed"]
 [connection signal="pressed" from="Credits/VBoxContainer/CenterContainer/HBoxContainer/Manual" to="." method="_on_manual_pressed"]
+[connection signal="pressed" from="Credits/VBoxContainer/CenterContainer/HBoxContainer/Manual" to="." method="_on_pressed"]
 [connection signal="pressed" from="Credits/VBoxContainer/CenterContainer/HBoxContainer/TitleScreen" to="." method="_on_pressed"]
 [connection signal="pressed" from="Credits/VBoxContainer/CenterContainer/HBoxContainer/TitleScreen" to="." method="_on_title_screen_pressed"]

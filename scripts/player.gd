@@ -3,16 +3,12 @@ extends CharacterBody2D
 @export var speed: float = 7000
 @export var jump: float = 1000
 @export var gravity: float = 7000
-@export var charbod: CharacterBody2D
 
 var failed: bool = false
-
 var cmd_queue: Array = []  # Command processing queue
-
 var idle: bool = true  # Just for the idle animation
 var falling: bool = false  # Just for the falling animation
 var prev_anim: String = "wait"
-
 var wait_sound = preload("res://sound/wait.wav")  # Needed because animation sound track overrides default
 
 @onready var dir: Vector2 = Vector2.ZERO
@@ -46,36 +42,11 @@ func process_command(cmd: String, args: String):
 			await move(Vector2.UP, 0.0 if args == "" else (args as float))
 			anim_handler("jump")
 		"stop", "wait", "s", "w":
-			$AudioStreamPlayer.stream = wait_sound# We only want the sound to play here, not during any idle animation
+			$AudioStreamPlayer.stream = wait_sound  # We only want the sound to play here, not during any idle animation
 			$AudioStreamPlayer.play()
 			anim_handler("wait")
 			await move(Vector2.ZERO, 0.0 if args == "" else (args as float))
 			prev_anim = %PlayerAnim.current_animation
-
-
-func _on_command(cmds: Array):
-
-	cmd_queue = cmds  # New commands overwrite previous ones
-	print_debug("COMMAND QUEUE:", cmd_queue)
-
-	while not cmd_queue.is_empty():
-		var next = cmd_queue.pop_front()
-		if next == null:  # Fixes race condition where multiple calls pass their while check
-			return
-		print_debug("Next:", next)
-		await process_command(next[0], next[1])
-
-
-func _on_loss():
-	failed = true
-	set_physics_process(false)
-	set_process(false)
-	anim_handler("loss")
-
-
-func _on_player_anim_timer_timeout() -> void:
-	if idle and not failed:
-		anim_handler("wait")
 
 
 func anim_handler(animation: String) -> void:
@@ -109,7 +80,30 @@ func anim_handler(animation: String) -> void:
 		var true_name:
 			%PlayerAnim.play(true_name)
 
-	#print_debug("Current Animation: ", %PlayerAnim.current_animation)
+
+func _on_command(cmds: Array):
+
+	cmd_queue = cmds  # New commands overwrite previous ones
+	print_debug("COMMAND QUEUE:", cmd_queue)
+
+	while not cmd_queue.is_empty():
+		var next = cmd_queue.pop_front()
+		if next == null:  # Fixes race condition where multiple calls pass their while check
+			return
+		print_debug("Next:", next)
+		await process_command(next[0], next[1])
+
+
+func _on_loss():
+	failed = true
+	set_physics_process(false)
+	set_process(false)
+	anim_handler("loss")
+
+
+func _on_player_anim_timer_timeout() -> void:
+	if idle and not failed:
+		anim_handler("wait")
 
 
 func _ready() -> void:
@@ -124,6 +118,7 @@ func _process(_delta: float) -> void:
 	elif is_on_floor() and falling:
 		falling = false
 		anim_handler(prev_anim)
+
 
 func _physics_process(delta: float) -> void:
 	velocity.x = speed * dir.x * delta
