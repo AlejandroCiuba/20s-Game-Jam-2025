@@ -25,7 +25,7 @@ func _on_resume_button_pressed() -> void:
 func _on_restart_button_pressed() -> void:
 	await $AudioStreamPlayer.finished
 	get_tree().paused = false
-	Manager.change_scene("res://scenes/screens/level.tscn")
+	Manager.change_scene("res://scenes/screens/levels/level.tscn")
 
 
 func _on_loss() -> void:

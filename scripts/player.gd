@@ -13,6 +13,7 @@ var wait_sound = preload("res://sound/wait.wav")  # Needed because animation sou
 
 @onready var dir: Vector2 = Vector2.ZERO
 
+
 func move(direction: Vector2, time: float = 0.0):
 	if direction != Vector2.UP:
 		dir = direction
@@ -121,6 +122,7 @@ func _process(_delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	velocity.x = speed * dir.x * delta
+	# Wait until the jump is finished to change directions
 	velocity.y += gravity * delta
+	velocity.x = speed * dir.x
 	move_and_slide()

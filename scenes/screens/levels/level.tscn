@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=4 uid="uid://djifxgsggo3ki"]
 
-[ext_resource type="Script" uid="uid://cys7314fa4krl" path="res://scenes/screens/level.gd" id="1_qd03e"]
+[ext_resource type="Script" uid="uid://cys7314fa4krl" path="res://scripts/level.gd" id="1_qd03e"]
 [ext_resource type="PackedScene" uid="uid://ckulu081sdywv" path="res://scenes/ents/gate.tscn" id="1_xxk2u"]
 [ext_resource type="TileSet" uid="uid://dh87b2kks3et6" path="res://resources/platform.tres" id="2_qd03e"]
 [ext_resource type="PackedScene" uid="uid://dx4hrv5p7ak0j" path="res://scenes/ents/player.tscn" id="3_gthyw"]
@@ -23,7 +23,7 @@ position = Vector2(1096, 492)
 [node name="Player" parent="Entities" instance=ExtResource("3_gthyw")]
 unique_name_in_owner = true
 position = Vector2(96, 128)
-speed = 10000.0
+speed = 225.0
 jump = 1250.0
 
 [node name="Tiles" type="Node2D" parent="."]

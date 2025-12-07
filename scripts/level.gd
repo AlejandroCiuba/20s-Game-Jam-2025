@@ -1,4 +1,5 @@
 extends Node2D
+class_name Level
 
 signal loss
 @export var dialog: PackedScene = preload("res://scenes/ui/dialog.tscn")

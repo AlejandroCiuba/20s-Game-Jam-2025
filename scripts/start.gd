@@ -21,7 +21,7 @@ func _on_pressed():
 
 func _on_start_pressed() -> void:
 	await $AudioStreamPlayer.finished
-	Manager.change_scene("res://scenes/screens/level.tscn")
+	Manager.change_scene("res://scenes/screens/levels/level.tscn")
 
 
 func _on_manual_pressed() -> void:
