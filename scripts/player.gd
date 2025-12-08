@@ -4,6 +4,8 @@ extends CharacterBody2D
 @export var jump: float = 1000
 @export var gravity: float = 7000
 
+@onready var dir: Vector2 = Vector2.ZERO
+
 var failed: bool = false
 var cmd_queue: Array = []  # Command processing queue
 var idle: bool = true  # Just for the idle animation
@@ -11,7 +13,7 @@ var falling: bool = false  # Just for the falling animation
 var prev_anim: String = "wait"
 var wait_sound = preload("res://sound/wait.wav")  # Needed because animation sound track overrides default
 
-@onready var dir: Vector2 = Vector2.ZERO
+signal floor
 
 
 func move(direction: Vector2, time: float = 0.0):
@@ -83,20 +85,17 @@ func anim_handler(animation: String) -> void:
 
 
 func _on_command(cmds: Array):
-
 	cmd_queue = cmds  # New commands overwrite previous ones
-	print_debug("COMMAND QUEUE:", cmd_queue)
-
 	while not cmd_queue.is_empty():
 		var next = cmd_queue.pop_front()
 		if next == null:  # Fixes race condition where multiple calls pass their while check
 			return
-		print_debug("Next:", next)
+		await floor
 		await process_command(next[0], next[1])
 
 
 func _on_loss():
-	failed = true
+	failed = false
 	set_physics_process(false)
 	set_process(false)
 	anim_handler("loss")
@@ -122,7 +121,13 @@ func _process(_delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	# Wait until the jump is finished to change directions
 	velocity.y += gravity * delta
 	velocity.x = speed * dir.x
 	move_and_slide()
+
+	# I'm not really happy with this solution because
+	# I don't like having a signal for just keeping
+	# the player jumping in the same direction they
+	# started in.
+	if is_on_floor():
+		floor.emit()

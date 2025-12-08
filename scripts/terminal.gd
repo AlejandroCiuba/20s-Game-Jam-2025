@@ -3,10 +3,15 @@ extends Control
 signal command_queue(cmds: Array)
 signal other(text: String)  # Let's there be other events besides commands
 
+var can_rapid_scroll: bool = false
+var rapid_scroll_wait: float = 1.0
+var rapid_scroll_press: float = 0.0
+
+var regex: RegEx = RegEx.new()
+var history: PackedStringArray = PackedStringArray([""])
+var histind: int = 0
+
 @onready var curr_view: HBoxContainer = %Lines.get_child(0)
-@onready var regex: RegEx = RegEx.new()
-@onready var history: PackedStringArray = PackedStringArray([""])
-@onready var histind: int = 0
 
 
 func get_cmdline(view: HBoxContainer) -> LineEdit:
@@ -63,7 +68,7 @@ func _on_loss():
 
 func _on_command(raw: String) -> void:
 	if raw.strip_edges() != "":
-		history.append(raw)
+		history.insert(1, raw)
 		histind = 0
 		var cmd_queue: Array[PackedStringArray] = parse_input(raw)
 		if cmd_queue.is_empty():
@@ -81,11 +86,23 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("up"):
-		if histind < len(history) and not history.is_empty():
-			get_cmdline(curr_view).text = history[histind]
-			histind = histind + 1 if histind + 1 < len(history) else histind
-	elif event.is_action_pressed("down"):
-		if histind >= 0 and not history.is_empty():
-			get_cmdline(curr_view).text = history[histind]
-			histind -= 1 if histind - 1 >= 0 else 0
+	if event.is_action_pressed("ui_text_caret_up") or (event.is_action("ui_text_caret_up") and can_rapid_scroll):
+		histind = (histind + 1) % len(history)
+		get_cmdline(curr_view).text = history[histind]
+		get_cmdline(curr_view).caret_column = get_cmdline(curr_view).text.length()
+		get_viewport().set_input_as_handled()
+	elif event.is_action_pressed("ui_text_caret_down") or (event.is_action("ui_text_caret_down") and can_rapid_scroll):
+		histind = (histind - 1) % len(history)
+		get_cmdline(curr_view).text = history[histind]
+		get_cmdline(curr_view).caret_column = get_cmdline(curr_view).text.length()
+		get_viewport().set_input_as_handled()
+
+
+func _process(delta: float) -> void:
+	if Input.is_action_pressed("ui_text_caret_up") or Input.is_action_pressed("ui_text_caret_down"):
+		rapid_scroll_press += delta
+	elif Input.is_action_just_released("ui_text_caret_up") or Input.is_action_just_released("ui_text_caret_up"):
+		can_rapid_scroll = false
+		rapid_scroll_press = 0
+	if rapid_scroll_press >= rapid_scroll_wait:
+		can_rapid_scroll = true
