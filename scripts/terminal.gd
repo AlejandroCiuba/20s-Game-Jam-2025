@@ -39,6 +39,7 @@ func update():
 	if len(%Lines.get_children()) > 3:
 		%Lines.get_child(0).free()
 
+	Manager.total_lines += 1
 	get_cmdline(curr_view).grab_focus()
 
 
@@ -81,7 +82,6 @@ func _on_command(raw: String) -> void:
 func _ready() -> void:
 	get_cmdline(curr_view).grab_focus()
 	regex.compile(r"^\s*(?<cmd>(?:l(?:eft)*)|(?:r(?:ight)*)|(?:j(?:ump)*)|(?:w(?:ait)*))\s*(?<args>(?:\d*\.)?\d*)?\s*$")  # Thank you regex101.com
-	print_debug(regex.get_pattern())
 	connect_curr()
 
 

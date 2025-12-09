@@ -16,7 +16,12 @@
 	},
 	{
 		"name": "CHAXX",
-		"text": "At least You and I... tried.",
+		"text": "At least You... tried.",
+		"fetch_id": "fail",
+	},
+	{
+		"name": "CHAXX",
+		"text": "Why did You determine me unworthy?",
 		"fetch_id": "fail",
 	},
 	{
