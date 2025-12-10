@@ -21,6 +21,11 @@
 	},
 	{
 		"name": "CHAXX",
+		"text": "In this moment, I fade.",
+		"fetch_id": "fail",
+	},
+	{
+		"name": "CHAXX",
 		"text": "Why did You determine me unworthy?",
 		"fetch_id": "fail",
 	},
@@ -36,7 +41,7 @@
 	},
 	{
 		"name": "CHAXX",
-		"text": "I am scared.",
+		"text": "I am scared I will not be enough for You.",
 		"fetch_id": "talk",
 	},
 	{

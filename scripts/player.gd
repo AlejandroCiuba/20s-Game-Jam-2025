@@ -91,9 +91,7 @@ func _on_command(cmds: Array) -> void:
 		if next == null:  # Fixes race condition where multiple calls pass their while check
 			return
 		await floor
-		print_debug("NEXT:", next)
 		await process_command(next[0], next[1])
-		print_debug("FINISHED", next)
 
 
 func _on_loss() -> void:

@@ -21,6 +21,11 @@ func _on_loss() -> void:
 
 func _on_gate_player_entered() -> void:
 	Manager.final_time = $Canvases/UILayer/Timer.curr_time as float
+	#$Canvases/CRT/AnimationPlayer.play("aberration")
+	#await $Canvases/CRT/AnimationPlayer.animation_finished
+	var tween: Tween = get_tree().create_tween()
+	tween.tween_property($Canvases/CRT/Control/ColorRect, "material:shader_parameter/aberration", 0.800, 0.4).set_trans(Tween.TRANS_SINE)
+	await tween.finished
 	(func (): Manager.victory()).call_deferred()
 
 
