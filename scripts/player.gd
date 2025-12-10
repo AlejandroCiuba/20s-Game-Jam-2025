@@ -16,7 +16,7 @@ var wait_sound = preload("res://sound/wait.wav")  # Needed because animation sou
 signal floor
 
 
-func move(direction: Vector2, time: float = 0.0):
+func move(direction: Vector2, time: float = 0.0) -> void:
 	if direction != Vector2.UP:
 		dir = direction
 	if not is_equal_approx(time, 0.0):
@@ -27,7 +27,7 @@ func move(direction: Vector2, time: float = 0.0):
 		velocity.y = -jump
 
 
-func process_command(cmd: String, args: String):
+func process_command(cmd: String, args: String) -> void:
 	match cmd:
 		"left", "l":
 			anim_handler("left")
@@ -84,7 +84,7 @@ func anim_handler(animation: String) -> void:
 			%PlayerAnim.play(true_name)
 
 
-func _on_command(cmds: Array):
+func _on_command(cmds: Array) -> void:
 	cmd_queue = cmds  # New commands overwrite previous ones
 	while not cmd_queue.is_empty():
 		var next = cmd_queue.pop_front()
@@ -96,7 +96,7 @@ func _on_command(cmds: Array):
 		print_debug("FINISHED", next)
 
 
-func _on_loss():
+func _on_loss() -> void:
 	failed = false
 	set_physics_process(false)
 	set_process(false)

@@ -4,7 +4,7 @@ extends Control
 func _on_restart_button_pressed() -> void:
 	$AudioStreamPlayer.play()
 	await $AudioStreamPlayer.finished
-	Manager.change_scene("res://scenes/screens/levels/level.tscn")
+	Manager.load_random_level()
 
 
 func _on_loss() -> void:

@@ -9,19 +9,19 @@ var names: Dictionary[String, int] = {
 @onready var curr: Control = $Menu
 
 
-func switch_menu(n: String):
+func switch_menu(n: String) -> void:
 	curr.visible = false
 	curr = get_child(names[n]) as Control
 	curr.visible = true
 
 
-func _on_pressed():
+func _on_pressed() -> void:
 	$AudioStreamPlayer.play()
 
 
 func _on_start_pressed() -> void:
 	await $AudioStreamPlayer.finished
-	Manager.change_scene("res://scenes/screens/levels/level.tscn")
+	Manager.load_random_level()
 
 
 func _on_manual_pressed() -> void:

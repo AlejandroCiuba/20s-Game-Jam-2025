@@ -7,7 +7,7 @@ signal timeout
 @export var time: float = 20.0
 
 
-func start_timer(seconds: float, countdown: bool = true, display_ms: bool = true):
+func start_timer(seconds: float, countdown: bool = true, display_ms: bool = true) -> void:
 
 	%TimerDisplay.text = "[b]%.2f[/b]" % (seconds if not countdown else seconds)
 	var ms: float = 1.0 if not display_ms else 1E1 as float  # Cannot display anything smaller as it is too fast to accurately get

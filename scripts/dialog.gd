@@ -16,12 +16,12 @@ func render_text() -> void:
 	rendered.emit()
 
 
-func spawn_dialog(header: String, dialog: String, loc: Vector2):
+func spawn_dialog(header: String, dialog: String, loc: Vector2) -> void:
 	global_position = loc
 	set_dialog(header, dialog)
 
 
-func set_dialog(header: String, dialog: String, clear_text: bool = true, change_size: bool = true):
+func set_dialog(header: String, dialog: String, clear_text: bool = true, change_size: bool = true) -> void:
 	%Name.text = header
 	text = dialog
 	if change_size:

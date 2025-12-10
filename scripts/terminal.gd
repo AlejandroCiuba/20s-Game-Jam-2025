@@ -18,11 +18,11 @@ func get_cmdline(view: HBoxContainer) -> LineEdit:
 	return view.get_child(1).get_child(0)
 
 
-func connect_curr():
+func connect_curr() -> void:
 	get_cmdline(curr_view).text_submitted.connect(_on_command)
 
 
-func update():
+func update() -> void:
 
 	var next_view: HBoxContainer = curr_view.duplicate()
 	get_cmdline(next_view).text = ""
@@ -57,11 +57,11 @@ func parse_input(raw: String, delim: String = ";") -> Array[PackedStringArray]:
 	return queue
 
 
-func _on_unpaused():
+func _on_unpaused() -> void:
 	get_cmdline(curr_view).grab_focus()
 
 
-func _on_loss():
+func _on_loss() -> void:
 	set_process(false)
 	get_cmdline(curr_view).editable = false
 	get_cmdline(curr_view).release_focus()

@@ -14,7 +14,7 @@ func create_dialog(seq_id: int, fetch_id: String) -> Node:
 
 
 func _on_loss() -> void:
-	var d = create_dialog(randi_range(0, len(Manager.dialog) - 1), "fail")
+	var d = create_dialog(randi_range(0, 5), "fail")  # Must be within the range of the fail dialog
 	await d.rendered
 	#d.queue_free()  # Don't know if I want this to go away or notr
 

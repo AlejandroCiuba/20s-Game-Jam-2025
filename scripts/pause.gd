@@ -4,7 +4,7 @@ signal paused
 signal unpaused
 
 
-func _on_pressed():
+func _on_pressed() -> void:
 	(func (): $AudioStreamPlayer.play()).call_deferred()  # Making this the last call means the entire audio will play since the resume button waits for the audio to finish
 
 
@@ -25,7 +25,7 @@ func _on_resume_button_pressed() -> void:
 func _on_restart_button_pressed() -> void:
 	await $AudioStreamPlayer.finished
 	get_tree().paused = false
-	Manager.change_scene("res://scenes/screens/levels/level.tscn")
+	Manager.change_scene(Manager.curr_level)
 
 
 func _on_loss() -> void:
