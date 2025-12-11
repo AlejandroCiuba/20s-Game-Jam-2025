@@ -16,4 +16,4 @@ func _on_title_screen_pressed() -> void:
 
 
 func _ready() -> void:
-	%ThankYou.text += "\n\nTotal Lines: %d\n\nTime Taken: %.2f" % [Manager.total_lines, 20.0 - Manager.final_time]
+	%ThankYou.text += "\n\ntime taken: %d\n\ntotal lines: %.2f" % [20.0 - Manager.final_time, Manager.total_lines]

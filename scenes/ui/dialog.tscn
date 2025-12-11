@@ -18,8 +18,6 @@ character = "CHAXX"
 text = "This is placeholder text.
 This is a second line of placeholder text."
 text_time = 0.05
-metadata/_edit_horizontal_guides_ = [334.0, 372.0]
-metadata/_edit_vertical_guides_ = [529.0, 623.0]
 
 [node name="TextContainer" type="VBoxContainer" parent="."]
 layout_mode = 1

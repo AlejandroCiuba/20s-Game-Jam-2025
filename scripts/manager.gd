@@ -10,7 +10,7 @@ var mute: bool = false
 
 var curr_level: String = ""
 var levels: PackedStringArray
-const total_levels: int = 4
+const total_levels: int = 5
 const level_folder: String = "res://scenes/screens/levels/"
 
 

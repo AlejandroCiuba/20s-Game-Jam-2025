@@ -99,7 +99,7 @@ environment = ExtResource("7_pa36w")
 [connection signal="loss" from="." to="Canvases/UILayer/Pause" method="_on_loss"]
 [connection signal="loss" from="." to="Canvases/UILayer/Fail" method="_on_loss"]
 [connection signal="loss" from="." to="Canvases/UILayer/Terminal" method="_on_loss"]
-[connection signal="player_entered" from="Entities/Gate" to="." method="_on_gate_player_entered"]
+[connection signal="player_entered" from="Entities/Gate" to="." method="_on_victory"]
 [connection signal="unpaused" from="Canvases/UILayer/Pause" to="Canvases/UILayer/Terminal" method="_on_unpaused"]
 [connection signal="timeout" from="Canvases/UILayer/Timer" to="." method="_on_ui_timeout"]
 [connection signal="command_queue" from="Canvases/UILayer/Terminal" to="Entities/Player" method="_on_command"]

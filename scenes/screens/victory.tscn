@@ -20,7 +20,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="Menu"]
+[node name="Background" type="ColorRect" parent="Menu"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -29,7 +29,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Menu"]
+[node name="MainArea" type="VBoxContainer" parent="Menu"]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -39,7 +39,7 @@ offset_top = -188.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="Menu/VBoxContainer"]
+[node name="TextContainer" type="MarginContainer" parent="Menu/MainArea"]
 layout_mode = 2
 size_flags_vertical = 10
 theme_override_constants/margin_left = 32
@@ -47,7 +47,7 @@ theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 256
 
-[node name="ThankYou" type="RichTextLabel" parent="Menu/VBoxContainer/MarginContainer"]
+[node name="ThankYou" type="RichTextLabel" parent="Menu/MainArea/TextContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 8
@@ -55,29 +55,29 @@ theme = ExtResource("3_eqqsn")
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_constants/line_separation = 8
 theme_override_font_sizes/normal_font_size = 32
-text = "Thank You for Your participation!"
+text = "thank You for Your participation!"
 fit_content = true
 autowrap_mode = 2
 vertical_alignment = 1
 
-[node name="CenterContainer" type="CenterContainer" parent="Menu/VBoxContainer"]
+[node name="ButtonArea" type="CenterContainer" parent="Menu/MainArea"]
 layout_mode = 2
 size_flags_vertical = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Menu/VBoxContainer/CenterContainer"]
+[node name="ButtonContainer" type="HBoxContainer" parent="Menu/MainArea/ButtonArea"]
 layout_mode = 2
 
-[node name="Play Again" type="Button" parent="Menu/VBoxContainer/CenterContainer/HBoxContainer"]
+[node name="Play Again" type="Button" parent="Menu/MainArea/ButtonArea/ButtonContainer"]
 layout_mode = 2
 size_flags_vertical = 8
 theme = ExtResource("3_eqqsn")
 text = "Play Again"
 
-[node name="TitleScreen" type="Button" parent="Menu/VBoxContainer/CenterContainer/HBoxContainer"]
+[node name="TitleScreen" type="Button" parent="Menu/MainArea/ButtonArea/ButtonContainer"]
 layout_mode = 2
 size_flags_vertical = 8
 theme = ExtResource("3_eqqsn")
-text = "Titlescreen"
+text = "Title"
 
 [node name="Sound" parent="Menu" instance=ExtResource("3_48wmm")]
 layout_mode = 1
@@ -91,8 +91,9 @@ stream = ExtResource("4_clstc")
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_48wmm")
+autoplay = true
 
-[connection signal="pressed" from="Menu/VBoxContainer/CenterContainer/HBoxContainer/Play Again" to="." method="_on_pressed"]
-[connection signal="pressed" from="Menu/VBoxContainer/CenterContainer/HBoxContainer/Play Again" to="." method="_on_play_again_pressed"]
-[connection signal="pressed" from="Menu/VBoxContainer/CenterContainer/HBoxContainer/TitleScreen" to="." method="_on_pressed"]
-[connection signal="pressed" from="Menu/VBoxContainer/CenterContainer/HBoxContainer/TitleScreen" to="." method="_on_title_screen_pressed"]
+[connection signal="pressed" from="Menu/MainArea/ButtonArea/ButtonContainer/Play Again" to="." method="_on_pressed"]
+[connection signal="pressed" from="Menu/MainArea/ButtonArea/ButtonContainer/Play Again" to="." method="_on_play_again_pressed"]
+[connection signal="pressed" from="Menu/MainArea/ButtonArea/ButtonContainer/TitleScreen" to="." method="_on_pressed"]
+[connection signal="pressed" from="Menu/MainArea/ButtonArea/ButtonContainer/TitleScreen" to="." method="_on_title_screen_pressed"]

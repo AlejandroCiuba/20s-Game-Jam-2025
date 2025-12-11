@@ -1,10 +1,25 @@
-[gd_scene load_steps=6 format=3 uid="uid://2531f3m0wblh"]
+[gd_scene load_steps=13 format=3 uid="uid://2531f3m0wblh"]
 
 [ext_resource type="Script" uid="uid://u5tmd8jtonyd" path="res://scripts/start.gd" id="1_jmev2"]
 [ext_resource type="PackedScene" uid="uid://bw7avhgp6kabt" path="res://scenes/ui/crt.tscn" id="2_swjlb"]
 [ext_resource type="PackedScene" uid="uid://cp6jmgbdfr0iq" path="res://scenes/ui/sound.tscn" id="3_swjlb"]
 [ext_resource type="Theme" uid="uid://bojatv6dk6yvc" path="res://resources/text.tres" id="3_u7tek"]
 [ext_resource type="AudioStream" uid="uid://cvpqeqj4rh0ig" path="res://sound/paradise-game.wav" id="4_p6pjl"]
+[ext_resource type="Texture2D" uid="uid://8madjy5a7hho" path="res://textures/little-guy-updated.png" id="5_p2vsu"]
+[ext_resource type="Shader" uid="uid://dismnhnp1eofu" path="res://resources/gateuianim.gdshader" id="6_4gdyt"]
+[ext_resource type="Texture2D" uid="uid://c125pc3dnpdh7" path="res://textures/gate.png" id="7_s3ghr"]
+[ext_resource type="PackedScene" uid="uid://e574vbvtfqti" path="res://scenes/ui/terminal.tscn" id="8_4gdyt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b2ljn"]
+atlas = ExtResource("5_p2vsu")
+region = Rect2(0, 256, 32, 32)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iwjbt"]
+shader = ExtResource("6_4gdyt")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xaoxb"]
+atlas = ExtResource("7_s3ghr")
+region = Rect2(0, 0, 32, 32)
 
 [node name="Start" type="CanvasLayer"]
 script = ExtResource("1_jmev2")
@@ -19,7 +34,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="Menu"]
+[node name="Background" type="ColorRect" parent="Menu"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,48 +48,55 @@ layout_mode = 1
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 
-[node name="CenterContainer" type="CenterContainer" parent="Menu"]
-layout_mode = 0
-offset_left = 96.0
-offset_top = 155.0
-offset_right = 1056.0
-offset_bottom = 517.0
+[node name="MainArea" type="HFlowContainer" parent="Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -480.0
+offset_top = -181.0
+offset_right = 480.0
+offset_bottom = 181.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Menu/CenterContainer"]
+[node name="MainContainer" type="VBoxContainer" parent="Menu/MainArea"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Menu/CenterContainer/VBoxContainer"]
+[node name="TitleContainer" type="MarginContainer" parent="Menu/MainArea/MainContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
 theme_override_constants/margin_bottom = 32
 
-[node name="Title" type="RichTextLabel" parent="Menu/CenterContainer/VBoxContainer/MarginContainer"]
+[node name="Title" type="RichTextLabel" parent="Menu/MainArea/MainContainer/TitleContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
 theme = ExtResource("3_u7tek")
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/normal_font_size = 48
-text = "20 Seconds to Paradise"
+text = "Paradise"
 fit_content = true
 autowrap_mode = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Menu/CenterContainer/VBoxContainer"]
+[node name="ButtonContainer" type="VBoxContainer" parent="Menu/MainArea/MainContainer"]
 layout_mode = 2
 
-[node name="Start" type="Button" parent="Menu/CenterContainer/VBoxContainer/VBoxContainer"]
+[node name="Start" type="Button" parent="Menu/MainArea/MainContainer/ButtonContainer"]
 layout_mode = 2
 size_flags_vertical = 4
 theme = ExtResource("3_u7tek")
 text = "Start"
 alignment = 0
 
-[node name="Manual" type="Button" parent="Menu/CenterContainer/VBoxContainer/VBoxContainer"]
+[node name="Manual" type="Button" parent="Menu/MainArea/MainContainer/ButtonContainer"]
 layout_mode = 2
 theme = ExtResource("3_u7tek")
 text = "Manual"
 alignment = 0
 
-[node name="Credits" type="Button" parent="Menu/CenterContainer/VBoxContainer/VBoxContainer"]
+[node name="Credits" type="Button" parent="Menu/MainArea/MainContainer/ButtonContainer"]
 layout_mode = 2
 theme = ExtResource("3_u7tek")
 text = "Credits
@@ -82,7 +104,6 @@ text = "Credits
 alignment = 0
 
 [node name="Manual" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -92,7 +113,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ColorRect" type="ColorRect" parent="Manual"]
+[node name="Background" type="ColorRect" parent="Manual"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -101,7 +122,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Manual"]
+[node name="MainArea" type="VBoxContainer" parent="Manual"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -109,72 +130,154 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Manual/VBoxContainer"]
+[node name="InstructionsBoundary" type="MarginContainer" parent="Manual/MainArea"]
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
-[node name="Manual" type="RichTextLabel" parent="Manual/VBoxContainer/MarginContainer"]
+[node name="InstructionsContainer" type="HBoxContainer" parent="Manual/MainArea/InstructionsBoundary"]
 layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+
+[node name="TextBoundaries" type="MarginContainer" parent="Manual/MainArea/InstructionsBoundary/InstructionsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Text" type="RichTextLabel" parent="Manual/MainArea/InstructionsBoundary/InstructionsContainer/TextBoundaries"]
+layout_mode = 2
+size_flags_horizontal = 3
 theme = ExtResource("3_u7tek")
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_constants/line_separation = 8
 theme_override_constants/paragraph_separation = 8
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
-text = "Greetings, Player!
+text = "Greetings, Participant!
 [br]
-Welcome, and thank you for your participation! Our study seeks to understand human-robot interfaces, and our relation to code!
+Welcome, and thank you for your participation! Our study seeks to understand human-computer interaction through a simulated obstacle course.
 [br]
-This study takes appoxiamately 20 seconds to complete.
+This study will take appoxiamately 20 seconds to complete.
 [br]
-You will be presented an environment with a little character, named CAXX.
+You will be presented an environment containing a character, a gate and a terminal to type commands.
 [br]
-CAXX will respond to the commands you type in the terminal located at the bottom-right of the environment.
-[br]
-The commands are:
+The character will [i]only[/i] respond to the following commands:
 [br]
 r NUM: Move right for NUM seconds
 l NUM: Move left for NUM seconds
 j NUM: Jump after NUM seconds
 w NUM: Stop moving for NUM seconds
 [br]
-If you do not specify a NUM, l and r will make CAXX move in that direction until the next movement command, j will make CAXX jump instantly, and w will make CAXX wait indefinitely until the next command.
+If you do not specify a NUM: l and r will move the character in that direction until the next command; j will make it jump instantly; and w will stop its movement until the next command.
 [br]
-Lastly, you may put multiple commands on the same line by seperating them with a semicolon (;). CAXX will follow them from left-to-right order.
+You may put multiple commands on the same line, seperating each with a semicolon (;). The character will follow them from left-to-right order.
 [br]
-Your goal is to move CAXX to the gate in the level.
+Your goal is to move the character to the gate in the level.
 [br]
 Best of luck!"
 autowrap_mode = 2
 vertical_alignment = 1
 
-[node name="CenterContainer" type="CenterContainer" parent="Manual/VBoxContainer"]
+[node name="ItemsContainer" type="VBoxContainer" parent="Manual/MainArea/InstructionsBoundary/InstructionsContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="AtolContainer" type="VBoxContainer" parent="Manual/MainArea/InstructionsBoundary/InstructionsContainer/ItemsContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="CharacterText" type="RichTextLabel" parent="Manual/MainArea/InstructionsBoundary/InstructionsContainer/ItemsContainer/AtolContainer"]
+layout_mode = 2
+theme = ExtResource("3_u7tek")
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+text = "Your Character"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="Atol" type="TextureRect" parent="Manual/MainArea/InstructionsBoundary/InstructionsContainer/ItemsContainer/AtolContainer"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_stretch_ratio = 12.8
+texture = SubResource("AtlasTexture_b2ljn")
+stretch_mode = 5
+
+[node name="GateContainer" type="VBoxContainer" parent="Manual/MainArea/InstructionsBoundary/InstructionsContainer/ItemsContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="GateText" type="RichTextLabel" parent="Manual/MainArea/InstructionsBoundary/InstructionsContainer/ItemsContainer/GateContainer"]
+layout_mode = 2
+theme = ExtResource("3_u7tek")
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+text = "The Gate"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="Gate" type="TextureRect" parent="Manual/MainArea/InstructionsBoundary/InstructionsContainer/ItemsContainer/GateContainer"]
+material = SubResource("ShaderMaterial_iwjbt")
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = SubResource("AtlasTexture_xaoxb")
+stretch_mode = 5
+
+[node name="TerminalContainer" type="VBoxContainer" parent="Manual/MainArea/InstructionsBoundary/InstructionsContainer/ItemsContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+
+[node name="TerminalText" type="RichTextLabel" parent="Manual/MainArea/InstructionsBoundary/InstructionsContainer/ItemsContainer/TerminalContainer"]
+layout_mode = 2
+theme = ExtResource("3_u7tek")
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+text = "Terminal"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="TerminalViewContainer" type="SubViewportContainer" parent="Manual/MainArea/InstructionsBoundary/InstructionsContainer/ItemsContainer/TerminalContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+stretch = true
+
+[node name="TerminalView" type="SubViewport" parent="Manual/MainArea/InstructionsBoundary/InstructionsContainer/ItemsContainer/TerminalContainer/TerminalViewContainer"]
+handle_input_locally = false
+size = Vector2i(208, 134)
+size_2d_override = Vector2i(832, 536)
+size_2d_override_stretch = true
+render_target_update_mode = 0
+
+[node name="Terminal" parent="Manual/MainArea/InstructionsBoundary/InstructionsContainer/ItemsContainer/TerminalContainer/TerminalViewContainer/TerminalView" instance=ExtResource("8_4gdyt")]
+
+[node name="ButtonArea" type="CenterContainer" parent="Manual/MainArea"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Manual/VBoxContainer/CenterContainer"]
+[node name="ButtonContainer" type="HBoxContainer" parent="Manual/MainArea/ButtonArea"]
 layout_mode = 2
 
-[node name="Start" type="Button" parent="Manual/VBoxContainer/CenterContainer/HBoxContainer"]
+[node name="Start" type="Button" parent="Manual/MainArea/ButtonArea/ButtonContainer"]
 layout_mode = 2
 theme = ExtResource("3_u7tek")
 text = "Start"
 alignment = 0
 
-[node name="Credits" type="Button" parent="Manual/VBoxContainer/CenterContainer/HBoxContainer"]
+[node name="Credits" type="Button" parent="Manual/MainArea/ButtonArea/ButtonContainer"]
 layout_mode = 2
 theme = ExtResource("3_u7tek")
 text = "Credits
 "
 alignment = 0
 
-[node name="TitleScreen" type="Button" parent="Manual/VBoxContainer/CenterContainer/HBoxContainer"]
+[node name="TitleScreen" type="Button" parent="Manual/MainArea/ButtonArea/ButtonContainer"]
 layout_mode = 2
 theme = ExtResource("3_u7tek")
-text = "Titlescreen"
+text = "Title"
 alignment = 0
 
 [node name="Credits" type="Control" parent="."]
@@ -188,7 +291,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ColorRect" type="ColorRect" parent="Credits"]
+[node name="Background" type="ColorRect" parent="Credits"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -197,7 +300,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Credits"]
+[node name="MainArea" type="VBoxContainer" parent="Credits"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -205,7 +308,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Credits/VBoxContainer"]
+[node name="CreditsContainer" type="MarginContainer" parent="Credits/MainArea"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 32
@@ -213,7 +316,7 @@ theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
-[node name="Credits" type="RichTextLabel" parent="Credits/VBoxContainer/MarginContainer"]
+[node name="Credits" type="RichTextLabel" parent="Credits/MainArea/CreditsContainer"]
 layout_mode = 2
 theme = ExtResource("3_u7tek")
 theme_override_colors/default_color = Color(1, 1, 1, 1)
@@ -231,26 +334,26 @@ scroll_active = false
 autowrap_mode = 2
 vertical_alignment = 1
 
-[node name="CenterContainer" type="CenterContainer" parent="Credits/VBoxContainer"]
+[node name="ButtonArea" type="CenterContainer" parent="Credits/MainArea"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Credits/VBoxContainer/CenterContainer"]
+[node name="ButtonContainer" type="HBoxContainer" parent="Credits/MainArea/ButtonArea"]
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="Start" type="Button" parent="Credits/VBoxContainer/CenterContainer/HBoxContainer"]
+[node name="Start" type="Button" parent="Credits/MainArea/ButtonArea/ButtonContainer"]
 layout_mode = 2
 theme = ExtResource("3_u7tek")
 text = "Start"
 alignment = 0
 
-[node name="Manual" type="Button" parent="Credits/VBoxContainer/CenterContainer/HBoxContainer"]
+[node name="Manual" type="Button" parent="Credits/MainArea/ButtonArea/ButtonContainer"]
 layout_mode = 2
 theme = ExtResource("3_u7tek")
 text = "Manual"
 alignment = 0
 
-[node name="TitleScreen" type="Button" parent="Credits/VBoxContainer/CenterContainer/HBoxContainer"]
+[node name="TitleScreen" type="Button" parent="Credits/MainArea/ButtonArea/ButtonContainer"]
 layout_mode = 2
 theme = ExtResource("3_u7tek")
 text = "Titlescreen"
@@ -259,21 +362,21 @@ alignment = 0
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_p6pjl")
 
-[connection signal="pressed" from="Menu/CenterContainer/VBoxContainer/VBoxContainer/Start" to="." method="_on_pressed"]
-[connection signal="pressed" from="Menu/CenterContainer/VBoxContainer/VBoxContainer/Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="Menu/CenterContainer/VBoxContainer/VBoxContainer/Manual" to="." method="_on_pressed"]
-[connection signal="pressed" from="Menu/CenterContainer/VBoxContainer/VBoxContainer/Manual" to="." method="_on_manual_pressed"]
-[connection signal="pressed" from="Menu/CenterContainer/VBoxContainer/VBoxContainer/Credits" to="." method="_on_pressed"]
-[connection signal="pressed" from="Menu/CenterContainer/VBoxContainer/VBoxContainer/Credits" to="." method="_on_credits_pressed"]
-[connection signal="pressed" from="Manual/VBoxContainer/CenterContainer/HBoxContainer/Start" to="." method="_on_pressed"]
-[connection signal="pressed" from="Manual/VBoxContainer/CenterContainer/HBoxContainer/Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="Manual/VBoxContainer/CenterContainer/HBoxContainer/Credits" to="." method="_on_pressed"]
-[connection signal="pressed" from="Manual/VBoxContainer/CenterContainer/HBoxContainer/Credits" to="." method="_on_credits_pressed"]
-[connection signal="pressed" from="Manual/VBoxContainer/CenterContainer/HBoxContainer/TitleScreen" to="." method="_on_pressed"]
-[connection signal="pressed" from="Manual/VBoxContainer/CenterContainer/HBoxContainer/TitleScreen" to="." method="_on_title_screen_pressed"]
-[connection signal="pressed" from="Credits/VBoxContainer/CenterContainer/HBoxContainer/Start" to="." method="_on_pressed"]
-[connection signal="pressed" from="Credits/VBoxContainer/CenterContainer/HBoxContainer/Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="Credits/VBoxContainer/CenterContainer/HBoxContainer/Manual" to="." method="_on_pressed"]
-[connection signal="pressed" from="Credits/VBoxContainer/CenterContainer/HBoxContainer/Manual" to="." method="_on_manual_pressed"]
-[connection signal="pressed" from="Credits/VBoxContainer/CenterContainer/HBoxContainer/TitleScreen" to="." method="_on_pressed"]
-[connection signal="pressed" from="Credits/VBoxContainer/CenterContainer/HBoxContainer/TitleScreen" to="." method="_on_title_screen_pressed"]
+[connection signal="pressed" from="Menu/MainArea/MainContainer/ButtonContainer/Start" to="." method="_on_pressed"]
+[connection signal="pressed" from="Menu/MainArea/MainContainer/ButtonContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Menu/MainArea/MainContainer/ButtonContainer/Manual" to="." method="_on_manual_pressed"]
+[connection signal="pressed" from="Menu/MainArea/MainContainer/ButtonContainer/Manual" to="." method="_on_pressed"]
+[connection signal="pressed" from="Menu/MainArea/MainContainer/ButtonContainer/Credits" to="." method="_on_pressed"]
+[connection signal="pressed" from="Menu/MainArea/MainContainer/ButtonContainer/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="Manual/MainArea/ButtonArea/ButtonContainer/Start" to="." method="_on_pressed"]
+[connection signal="pressed" from="Manual/MainArea/ButtonArea/ButtonContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Manual/MainArea/ButtonArea/ButtonContainer/Credits" to="." method="_on_pressed"]
+[connection signal="pressed" from="Manual/MainArea/ButtonArea/ButtonContainer/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="Manual/MainArea/ButtonArea/ButtonContainer/TitleScreen" to="." method="_on_pressed"]
+[connection signal="pressed" from="Manual/MainArea/ButtonArea/ButtonContainer/TitleScreen" to="." method="_on_title_screen_pressed"]
+[connection signal="pressed" from="Credits/MainArea/ButtonArea/ButtonContainer/Start" to="." method="_on_pressed"]
+[connection signal="pressed" from="Credits/MainArea/ButtonArea/ButtonContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Credits/MainArea/ButtonArea/ButtonContainer/Manual" to="." method="_on_manual_pressed"]
+[connection signal="pressed" from="Credits/MainArea/ButtonArea/ButtonContainer/Manual" to="." method="_on_pressed"]
+[connection signal="pressed" from="Credits/MainArea/ButtonArea/ButtonContainer/TitleScreen" to="." method="_on_pressed"]
+[connection signal="pressed" from="Credits/MainArea/ButtonArea/ButtonContainer/TitleScreen" to="." method="_on_title_screen_pressed"]

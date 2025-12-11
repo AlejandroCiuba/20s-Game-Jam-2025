@@ -34,3 +34,9 @@ func _on_credits_pressed() -> void:
 
 func _on_title_screen_pressed() -> void:
 	switch_menu("Menu")
+
+
+func _ready() -> void:
+	$Menu.visible = true
+	$Manual.visible = false
+	$Credits.visible = false
