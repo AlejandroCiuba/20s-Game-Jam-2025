@@ -95,5 +95,5 @@ autoplay = true
 
 [connection signal="pressed" from="Menu/MainArea/ButtonArea/ButtonContainer/Play Again" to="." method="_on_pressed"]
 [connection signal="pressed" from="Menu/MainArea/ButtonArea/ButtonContainer/Play Again" to="." method="_on_play_again_pressed"]
-[connection signal="pressed" from="Menu/MainArea/ButtonArea/ButtonContainer/TitleScreen" to="." method="_on_title_screen_pressed"]
 [connection signal="pressed" from="Menu/MainArea/ButtonArea/ButtonContainer/TitleScreen" to="." method="_on_pressed"]
+[connection signal="pressed" from="Menu/MainArea/ButtonArea/ButtonContainer/TitleScreen" to="." method="_on_title_screen_pressed"]

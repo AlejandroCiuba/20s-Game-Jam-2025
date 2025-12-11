@@ -16,4 +16,5 @@ func _on_title_screen_pressed() -> void:
 
 
 func _ready() -> void:
+	$CRT/Control/ColorRect.material.set_shader_parameter("aberration", 0.001)  # Clear tween here to prevent spam-jump glitch
 	%ThankYou.text += "\n\ntime taken: %.2f\n\ntotal lines: %d" % [20.0 - Manager.final_time, Manager.total_lines]

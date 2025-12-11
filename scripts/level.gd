@@ -35,7 +35,6 @@ func _on_victory() -> void:
 	create_dialog(randi_range(0, 1), "victory")
 	var tween: Tween = get_tree().create_tween()
 	tween.tween_property($Canvases/CRT/Control/ColorRect, "material:shader_parameter/aberration", 0.800, 0.4).set_trans(Tween.TRANS_SINE)
-	tween.tween_callback(func (): $Canvases/CRT/Control/ColorRect.material.set_shader_parameter("aberration", 0.001))
 	await tween.finished
 	(func (): Manager.victory()).call_deferred()
 

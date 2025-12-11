@@ -248,7 +248,7 @@ stretch = true
 
 [node name="TerminalView" type="SubViewport" parent="Manual/MainArea/InstructionsBoundary/InstructionsContainer/ItemsContainer/TerminalContainer/TerminalViewContainer"]
 handle_input_locally = false
-size = Vector2i(208, 134)
+size = Vector2i(2, 2)
 size_2d_override = Vector2i(832, 536)
 size_2d_override_stretch = true
 render_target_update_mode = 0
@@ -281,7 +281,6 @@ text = "Title"
 alignment = 0
 
 [node name="Credits" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -356,7 +355,7 @@ alignment = 0
 [node name="TitleScreen" type="Button" parent="Credits/MainArea/ButtonArea/ButtonContainer"]
 layout_mode = 2
 theme = ExtResource("3_u7tek")
-text = "Titlescreen"
+text = "Title"
 alignment = 0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
@@ -364,8 +363,8 @@ stream = ExtResource("4_p6pjl")
 
 [connection signal="pressed" from="Menu/MainArea/MainContainer/ButtonContainer/Start" to="." method="_on_pressed"]
 [connection signal="pressed" from="Menu/MainArea/MainContainer/ButtonContainer/Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="Menu/MainArea/MainContainer/ButtonContainer/Manual" to="." method="_on_manual_pressed"]
 [connection signal="pressed" from="Menu/MainArea/MainContainer/ButtonContainer/Manual" to="." method="_on_pressed"]
+[connection signal="pressed" from="Menu/MainArea/MainContainer/ButtonContainer/Manual" to="." method="_on_manual_pressed"]
 [connection signal="pressed" from="Menu/MainArea/MainContainer/ButtonContainer/Credits" to="." method="_on_pressed"]
 [connection signal="pressed" from="Menu/MainArea/MainContainer/ButtonContainer/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="Manual/MainArea/ButtonArea/ButtonContainer/Start" to="." method="_on_pressed"]
@@ -376,7 +375,7 @@ stream = ExtResource("4_p6pjl")
 [connection signal="pressed" from="Manual/MainArea/ButtonArea/ButtonContainer/TitleScreen" to="." method="_on_title_screen_pressed"]
 [connection signal="pressed" from="Credits/MainArea/ButtonArea/ButtonContainer/Start" to="." method="_on_pressed"]
 [connection signal="pressed" from="Credits/MainArea/ButtonArea/ButtonContainer/Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="Credits/MainArea/ButtonArea/ButtonContainer/Manual" to="." method="_on_manual_pressed"]
 [connection signal="pressed" from="Credits/MainArea/ButtonArea/ButtonContainer/Manual" to="." method="_on_pressed"]
+[connection signal="pressed" from="Credits/MainArea/ButtonArea/ButtonContainer/Manual" to="." method="_on_manual_pressed"]
 [connection signal="pressed" from="Credits/MainArea/ButtonArea/ButtonContainer/TitleScreen" to="." method="_on_pressed"]
 [connection signal="pressed" from="Credits/MainArea/ButtonArea/ButtonContainer/TitleScreen" to="." method="_on_title_screen_pressed"]
