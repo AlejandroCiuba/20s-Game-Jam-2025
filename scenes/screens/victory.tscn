@@ -71,13 +71,13 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 8
 theme = ExtResource("3_eqqsn")
-text = "Play Again"
+text = "play again"
 
 [node name="TitleScreen" type="Button" parent="Menu/MainArea/ButtonArea/ButtonContainer"]
 layout_mode = 2
 size_flags_vertical = 8
 theme = ExtResource("3_eqqsn")
-text = "Title"
+text = "title"
 
 [node name="Sound" parent="Menu" instance=ExtResource("3_48wmm")]
 layout_mode = 1
@@ -95,5 +95,5 @@ autoplay = true
 
 [connection signal="pressed" from="Menu/MainArea/ButtonArea/ButtonContainer/Play Again" to="." method="_on_pressed"]
 [connection signal="pressed" from="Menu/MainArea/ButtonArea/ButtonContainer/Play Again" to="." method="_on_play_again_pressed"]
-[connection signal="pressed" from="Menu/MainArea/ButtonArea/ButtonContainer/TitleScreen" to="." method="_on_pressed"]
 [connection signal="pressed" from="Menu/MainArea/ButtonArea/ButtonContainer/TitleScreen" to="." method="_on_title_screen_pressed"]
+[connection signal="pressed" from="Menu/MainArea/ButtonArea/ButtonContainer/TitleScreen" to="." method="_on_pressed"]
