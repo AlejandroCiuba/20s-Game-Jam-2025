@@ -43,9 +43,58 @@ func update() -> void:
 	get_cmdline(curr_view).grab_focus()
 
 
+# Maybe I'll build a parser if I expand on the game
+# S -> X | pn* | (pn*)n*
+# X -> p*n*;X*
+# n -> [0-9]+ | [0-9]+.[0.9]* | [0-9]*.[0.9]+
+# p -> (pn*) | [lrjw]
+@onready var num: RegEx = RegEx.new()
+func expand_parens(raw: String) -> String:
+	num.compile(r"\)(?<reps>\d+)")
+	var expanded: String = raw
+	var left_ind: int = 0
+	while '(' in expanded:
+		var buffer: String = expanded
+		for ind in range(len(expanded)):
+			var token: String = expanded[ind]
+			if token == '(':
+				left_ind = ind
+			elif token == ')':
+				var info: String = expanded.substr(left_ind + 1)
+				var find: RegExMatch = num.search(info)
+				var reps: int = find.get_string("reps") as int if find != null else 1
+				var sub: String = (";" + info.split(')')[0] + ";").repeat(reps)
+				buffer = expanded.substr(0, left_ind) + sub + expanded.substr(ind + 1 + (len("%d" % reps) if find != null else 0 ), -1)
+				break
+		expanded = buffer
+		print_debug(expanded)
+	return expanded
+
+
+func correct_parens(raw: String) -> bool:
+	var right: int = 0
+	var left: int = 0
+	for token in raw:
+		if token == '(':
+			left += 1
+		elif token == ')':
+			right += 1
+		if right > left:
+			return false
+	if left == right:
+		return true
+	return false
+
+
 func parse_input(raw: String, delim: String = ";") -> Array[PackedStringArray]:
-	var parse: PackedStringArray = raw.split(delim)
 	var queue: Array[PackedStringArray] = []
+	# 1. Check for parentheses
+	if '(' in raw or ')' in raw:
+		if not correct_parens(raw):
+			return queue
+		else:
+			raw = expand_parens(raw)
+	var parse: PackedStringArray = raw.split(delim)
 	for sec in parse:
 		var cmd: Array[RegExMatch] = regex.search_all(sec.strip_edges())
 		for tokens in cmd:

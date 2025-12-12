@@ -36,3 +36,9 @@ func _on_loss() -> void:
 func _ready() -> void:
 	$Pause.visible = true
 	$Resume.visible = false
+
+
+func _on_title_button_pressed() -> void:
+	await $AudioStreamPlayer.finished
+	get_tree().paused = false
+	Manager.change_scene("res://scenes/screens/start.tscn")
