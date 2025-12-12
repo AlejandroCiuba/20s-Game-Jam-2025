@@ -8,6 +8,8 @@ var rapid_scroll_wait: float = 1.0
 var rapid_scroll_press: float = 0.0
 
 var regex: RegEx = RegEx.new()
+var num: RegEx = RegEx.new()
+
 var history: PackedStringArray = PackedStringArray([""])
 var histind: int = 0
 
@@ -43,14 +45,12 @@ func update() -> void:
 	get_cmdline(curr_view).grab_focus()
 
 
-# Maybe I'll build a parser if I expand on the game
+# This is not a robust parser
 # S -> X | pn* | (pn*)n*
 # X -> p*n*;X*
 # n -> [0-9]+ | [0-9]+.[0.9]* | [0-9]*.[0.9]+
 # p -> (pn*) | [lrjw]
-@onready var num: RegEx = RegEx.new()
 func expand_parens(raw: String) -> String:
-	num.compile(r"\)(?<reps>\d+)")
 	var expanded: String = raw
 	var left_ind: int = 0
 	while '(' in expanded:
@@ -131,6 +131,7 @@ func _on_command(raw: String) -> void:
 func _ready() -> void:
 	get_cmdline(curr_view).grab_focus()
 	regex.compile(r"^\s*(?<cmd>(?:l(?:eft)*)|(?:r(?:ight)*)|(?:j(?:ump)*)|(?:w(?:ait)*))\s*(?<args>(?:\d*\.)?\d*)?\s*$")  # Thank you regex101.com
+	num.compile(r"\)(?<reps>\d+)")
 	connect_curr()
 
 
